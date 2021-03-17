@@ -1,5 +1,6 @@
 import { VaultPage } from './VaultPage'
 import { Header } from './Header'
+import { Footer } from './Footer'
 import './App.scss';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <Header />
       <VaultPage />
+      <Footer />
     </div>
   );
 }

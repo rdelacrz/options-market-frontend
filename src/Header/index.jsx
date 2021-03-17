@@ -26,7 +26,7 @@ const Title = styled.div({
 const Nav = styled.div({
     display: 'flex',
     justifyContent: 'space-between',
-    width: '15%',
+    width: '10%',
     padding: '20px 0',
     margin: '0 auto'
 })
@@ -37,9 +37,8 @@ export const Header = () => {
             <Logo />
             <Title>Options.Market</Title>
             <Nav>
-                <div>Home</div>
-                <div>About</div>
-                <div>Launch</div>
+                <a style={{color: 'black'}} rel="noopener noreferrer" target="_blank" href='https://medium.com/options-market'>About</a>
+                <a style={{color: 'black'}} rel="noopener noreferrer" target="_blank" href='https://options-market.gitbook.io/options-market/ama'>Launch</a>
             </Nav>
         </HeaderPage>
     )

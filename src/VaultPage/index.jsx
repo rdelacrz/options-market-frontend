@@ -7,6 +7,7 @@ export class VaultPage extends PureComponent {
     constructor() {
         super()
         this.state = {
+            popupOpen: false
         }
         function CountdownTracker(label, value) {
 
@@ -126,19 +127,20 @@ export class VaultPage extends PureComponent {
     }
 
     render() {
+        const { popupOpen } = this.state;
         return (
             <React.Fragment>
-                <div className='title-vault'>Accelerator Vault</div>
+                <div className='title-vault'>Dual-Accelerator Vault</div>
                 <div className='timer'></div>
                 <section className='vault'>
                     <div className='stake-panel'>
                         <div className='header-panel'>
                             <div className='header-text'>
-                                Send ETH. It is pooled with $HCORE. Your discounted LP is locked for a period.
+                                Send ETH. It is pooled with $OSM. Your discounted LP is locked for a period.
                             </div>
                             <div>
                                 <div className='wrap-title second'>
-                                    <div className='header-text'>Available $HCORE</div>
+                                    <div className='header-text'>Available $OSM</div>
                                     <div className='stake-value'>000000</div>
                                 </div>
                             </div>
@@ -175,28 +177,17 @@ export class VaultPage extends PureComponent {
                             <div className='stake-body'>
                                 <div className='stake-input-wrap'>
                                     <input className='stake-input' type='text' placeholder='Amount' />
-                                    {/* <div className='stake-type-eth' ></div> */}
-                                    <div style={{color: 'white'}}>ETH</div>
+                                    <div style={{ color: 'white' }}>ETH</div>
                                 </div>
-                                <div className='stake-button btn unique' >SEND ETH</div>
+                                <div className='stake-button btn unique' onClick={() => { this.setState({ popupOpen: true }) }}>SEND ETH</div>
                                 <a className='mobile' rel="noopener noreferrer" target="_blank" href='https://medium.com/hcore/send-eth-to-the-liquid-vault-claim-lp-tokens-53327b815e9b'>
                                     <div className='stake-more'>Learn more <div>&#8250;</div></div>
                                 </a>
-                                <div className='stake-button btn mr unique' >CLAIM</div>
+                                <div className='stake-button btn mr unique' onClick={() => { this.setState({ popupOpen: true }) }}>CLAIM</div>
                                 <a className='mobile' rel="noopener noreferrer" target="_blank" href='https://medium.com/hcore/send-eth-to-the-liquid-vault-claim-lp-tokens-53327b815e9b'>
                                     <div className='stake-more'>Learn more <div>&#8250;</div></div>
                                 </a>
 
-                            </div>
-                            <div className='stake-footer'>
-                                <div className='stake-wrap-more'>
-                                    <a rel="noopener noreferrer" target="_blank" href='https://medium.com/hcore/send-eth-to-the-liquid-vault-claim-lp-tokens-53327b815e9b'>
-                                        <div className='stake-more'>Learn more <div>&#8250;</div></div>
-                                    </a>
-                                    <a rel="noopener noreferrer" target="_blank" href='https://medium.com/hcore/send-eth-to-the-liquid-vault-claim-lp-tokens-53327b815e9b'>
-                                        <div className='stake-more'>Learn more <div>&#8250;</div></div>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -216,6 +207,20 @@ export class VaultPage extends PureComponent {
                     <br />
                     <div style={{ textAlign: 'center', borderBottom: '1px solid white', width: '130px', margin: '0 auto' }}>Read the full story</div>
                 </div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+
+                    <a style={{ fontSize: '24px', color: 'black', borderBottom: '1px solid black' }} rel="noopener noreferrer" target="_blank" href='https://medium.com/options-market/option-market-roadmap-2021-deb82330e2de'>Roadmap</a>
+                </div>
+                {popupOpen ? (
+                    <div className='pop-up'>
+                        <div className='pop-up-body'>
+                            <div className='text-pop-up'>
+                                Will be live soon
+                        </div>
+                            <div className='pop-up-button' onClick={() => { this.setState({ popupOpen: false }) }}>OK</div>
+                        </div>
+                    </div>
+                ) : null}
             </React.Fragment>
         )
     }
