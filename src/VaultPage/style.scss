@@ -1,0 +1,530 @@
+.vault {
+    .vault-page-title {
+        padding: 152px 0 16px;
+        background-image: radial-gradient(circle at 50% 50%, #ffffff, #000000 38%);
+        font-family: Roboto-medium;
+        font-size: 48px;
+        font-weight: 900;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        @media screen and (max-width: 420px) {
+            background-image: radial-gradient(circle at 50% 50%, #ffffff, #000000 82%);
+        }
+    }
+    .description {
+        h1 {
+            font-size: 36px;
+            margin-bottom: 70px;
+        }
+    }
+    .question-block {
+        @media screen and (max-width: 420px) {
+            margin: 30px auto;
+            height: 140px;
+            .button {
+                width: 88%;
+                padding: 0;
+                height: 36px;
+            }
+            .question {
+                margin-bottom: 30px;
+            }
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .stake-button.btn.mr.unique {
+            width: 100%!important;
+            height: 48px!important;
+        }
+    }
+}
+
+.btn {
+    width: 90%;
+    font-family: Roboto-medium;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: 1.25px;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0px;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.vault-notification {
+    background-image: radial-gradient(circle at 49% 50%, #ffffff, #000000 95%);
+    font-family: Roboto-medium;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    a {
+        margin-left: 10px;
+        border-bottom: 1px solid white;
+    }
+    @media screen and (max-width: 420px) {
+        background-image: radial-gradient(circle at 49% 85%, #ffffff, #000000 150%);
+        width: 350px;
+        margin: 10px auto;
+        font-size: 24px;
+    }
+    &.small {
+        margin-bottom: 5px;
+    }
+}
+
+.stake-panel {
+    width: 985px;
+    height: 280px;
+    margin: 0 auto 26px;
+    padding: 24px;
+    background-color: #333333;
+    .header-panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        .header-text {
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.43;
+            letter-spacing: 0.25px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .stake-value {
+            font-family: Roboto;
+            font-size: 24px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.25;
+            letter-spacing: normal;
+            color: #ffffff;
+        }
+        .wrap-title {
+            text-align: center;
+        }
+    }
+    .stake {
+        .stake-header {
+            display: flex;
+            .wrap-title {
+                .stake-title {
+                    width: 142px;
+                    height: 16px;
+                    font-family: Roboto;
+                    font-size: 12px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.33;
+                    letter-spacing: 0.4px;
+                    color: rgba(255, 255, 255, 0.6);
+                }
+                .stake-value {
+                    width: 142px;
+                    height: 30px;
+                    margin-top: 4px;
+                    font-family: Roboto;
+                    font-size: 24px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.25;
+                    letter-spacing: normal;
+                    color: #ffffff;
+                }
+                &.first {
+                    width: 180px;
+                }
+                &.second {
+                    width: 115px;
+                }
+                &.third {
+                    width: 150px;
+                }
+                &.fourth {
+                    width: 110px;
+                }
+            }
+            .second-block {
+                display: flex;
+                justify-content: space-between;
+                width: 270px;
+            }
+        }
+        .stake-body {
+            display: flex;
+            align-items: center;
+            margin-top: 24px;
+            .stake-input-wrap {
+                width: 450px;
+                padding: 16px;
+                background-color: rgb(83, 134, 178);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .stake-input {
+                    background: transparent;
+                    outline: none;
+                    border: none;
+                    width: 291px;
+                    height: 24px;
+                    margin: 0 16px 0 0;
+                    font-family: Roboto;
+                    font-size: 16px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.5;
+                    letter-spacing: 0.15px;
+                    color: rgba(255, 255, 255, 0.6);
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.6);
+                    }
+                }
+                .stake-type-eth {
+                    height: 30px;
+                    width: 70px;
+                    background-image: url('../assets/eth.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+            }
+            .stake-button {
+                width: 142px;
+                height: 44px;
+                margin-left: 40px;
+                background-image: url('../assets/stake.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                &:hover {
+                    opacity: 0.8;
+                }
+                &.mr {
+                    width: 270px;
+                    height: 40px;
+                    background-image: url('../assets/claim.png');
+                }
+            }
+            .unstake-button {
+                width: 260px;
+                height: 44px;
+                margin-left: 55px;
+                background-image: url('../assets/stake.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+        .stake-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px;
+            .stake-wrap-more {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 340px;
+                padding: 0px 86px;
+                .stake-more {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 80px;
+                    height: 16px;
+                    font-family: Roboto-medium;
+                    font-size: 12px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.33;
+                    letter-spacing: 0.4px;
+                    text-align: center;
+                    color: #ec2d44;
+                    cursor: pointer;
+                    div {
+                        font-size: 22px;
+                        height: 34px;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 420px) {
+        width: 82%;
+        height: 640px;
+        margin: 0 auto;
+        .header-panel {
+            display: block;
+            .header-text {
+                text-align: center;
+            }
+            .wrap-title {
+                margin-top: 15px;
+            }
+        }
+        .stake {
+            .stake-header {
+                flex-wrap: wrap;
+                position: relative;
+                .wrap-title.first {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 50%;
+                    margin-bottom: 15px;
+                }
+                .second-block {
+                    width: 100%;
+                    position: absolute;
+                    top: 350px;
+                    .wrap-title.second {
+                        width: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+            }
+            .stake-body {
+                display: block;
+                .stake-input-wrap {
+                    width: 90%;
+                    border-radius: 3px;
+                    .stake-input {
+                        width: 85%;
+                    }
+                }
+                .stake-button {
+                    width: 100%;
+                    margin: 0;
+                    background-image: url('../assets/send-eth-x.png');
+                    &.unique {
+                        margin: 20px 0;
+                    }
+                    &.mr {
+                        margin-top: 90px;
+                    }
+                }
+                .stake-more {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 80px;
+                    height: 16px;
+                    margin: 20px auto;
+                    font-family: Roboto-medium;
+                    font-size: 12px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.33;
+                    letter-spacing: 0.4px;
+                    text-align: center;
+                    color: #ec2d44;
+                    cursor: pointer;
+                }
+                .mobile {
+                    display: block;
+                }
+            }
+            .stake-footer {
+                display: none;
+                width: 75%;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.mobile {
+    display: none;
+}
+
+.modal.vault {
+    .wrap-modal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .title {
+            margin: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-style: italic;
+        }
+        input {
+            width: 200px;
+        }
+    }
+}
+
+html {
+    height: 100%;
+}
+
+.flip-clock {
+    text-align: center;
+    perspective: 400px;
+    margin: 20px auto;
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+}
+
+.flip-clock__piece {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.flip-clock__slot {
+    font-size: 2vw;
+}
+
+.card {
+    display: block;
+    position: relative;
+    padding-bottom: 0.72em;
+    font-size: 50px;
+    line-height: 0.95;
+}
+
+.card__top,
+.card__bottom,
+.card__back::before,
+.card__back::after {
+    display: block;
+    height: 0.72em;
+    color: #ccc;
+    background: #000000;
+    padding: 0.25em 0.25em;
+    border-radius: 0.15em 0.15em 0 0;
+    backface-visiblity: hidden;
+    transform-style: preserve-3d;
+    width: 1.8em;
+    transform: translateZ(0);
+}
+
+.title-vault {
+    text-align: center;
+    font-size: 72px;
+    font-weight: bold;
+}
+
+.card__bottom {
+    color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-top: solid 1px #000;
+    background: #000000;
+    border-radius: 0 0 0.15em 0.15em;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.card__bottom::after {
+    display: block;
+    margin-top: -0.72em;
+}
+
+.card__back::before,
+.card__bottom::after {
+    content: attr(data-value);
+}
+
+.card__back {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0%;
+    pointer-events: none;
+}
+
+.card__back::before {
+    position: relative;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.flip .card__back::before {
+    animation: flipTop 0.3s cubic-bezier(.37, .01, .94, .35);
+    animation-fill-mode: both;
+    transform-origin: center bottom;
+}
+
+.flip .card__back .card__bottom {
+    transform-origin: center top;
+    animation-fill-mode: both;
+    animation: flipBottom 0.6s cubic-bezier(.15, .45, .28, 1); // 0.3s; 
+}
+
+@keyframes flipTop {
+    0% {
+        transform: rotateX(0deg);
+        z-index: 2;
+    }
+    0%,
+    99% {
+        opacity: 0.99;
+    }
+    100% {
+        transform: rotateX(-90deg);
+        opacity: 0;
+    }
+}
+
+@keyframes flipBottom {
+    0%,
+    50% {
+        z-index: -1;
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+    51% {
+        opacity: 0.99;
+    }
+    100% {
+        opacity: 0.99;
+        transform: rotateX(0deg);
+        z-index: 5;
+    }
+}
+
+.blue-text {
+    background: #1B5C8D;
+    padding: 50px 200px;
+    margin-top: 20px;
+    color: white;
+}
