@@ -11,7 +11,7 @@
         "react-dom": "^17.0.1",
         "react-scripts": "4.0.3",
         "sass": "^1.32.8",
-        "styled-components": "^5.2.1",
+        "styled-components": "^5.2.1"
     },
     "homepage": "https://andrii4ire.github.io/option-market",
     "scripts": {
