@@ -113,7 +113,7 @@ export class VaultPage extends PureComponent {
             setTimeout(updateClock, 500);
         }
 
-        var deadline = new Date(1616170224110);
+        var deadline = new Date(1616763600000);
         this.c = new Clock(deadline, function () { alert('countdown complete') });
 
     }
@@ -180,19 +180,20 @@ export class VaultPage extends PureComponent {
                                     <div style={{ color: 'white' }}>ETH</div>
                                 </div>
                                 <div className='stake-button btn unique' onClick={() => { this.setState({ popupOpen: true }) }}>SEND ETH</div>
-                                <a className='mobile' rel="noopener noreferrer" target="_blank" href='https://medium.com/hcore/send-eth-to-the-liquid-vault-claim-lp-tokens-53327b815e9b'>
-                                    <div className='stake-more'>Learn more <div>&#8250;</div></div>
-                                </a>
+                                <br/>
+                                <br/>
+                                
                                 <div className='stake-button btn mr unique' onClick={() => { this.setState({ popupOpen: true }) }}>CLAIM</div>
-                                <a className='mobile' rel="noopener noreferrer" target="_blank" href='https://medium.com/hcore/send-eth-to-the-liquid-vault-claim-lp-tokens-53327b815e9b'>
-                                    <div className='stake-more'>Learn more <div>&#8250;</div></div>
-                                </a>
+
 
                             </div>
                         </div>
                     </div>
                 </section>
-                <div style={{ textAlign: 'center' }}>Learn more</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+                    <a style={{ fontSize: '24px', color: 'black', borderBottom: '1px solid black' }} rel="noopener noreferrer" target="_blank" href='https://options-market.gitbook.io/options-market/accelerator-vault-explainer'>Learn more</a>
+                </div>
+
                 <div className='blue-text'>
                     <div style={{ fontSize: '48px', color: 'white', textAlign: 'center', fontWeight: ' ' }}>Options.Market</div>
                     <br />
@@ -205,11 +206,9 @@ export class VaultPage extends PureComponent {
                     purchase or sell the underlying asset at a predetermined strike price. The seller’s/writer’s side (wToken) allows the holder to withdraw the collateral (if the option was not exercised) or withdraw the exercise payment (if the option was exercised) from the contract after expiration.
                     </div>
                     <br />
-                    <div style={{ textAlign: 'center', borderBottom: '1px solid white', width: '130px', margin: '0 auto' }}>Read the full story</div>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-
-                    <a style={{ fontSize: '24px', color: 'black', borderBottom: '1px solid black' }} rel="noopener noreferrer" target="_blank" href='https://medium.com/options-market/option-market-roadmap-2021-deb82330e2de'>Roadmap</a>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+                        <a rel="noopener noreferrer" target="_blank" href='https://medium.com/options-market/about-options-market-44270bf981f5' style={{ fontSize: '22px', color: 'white', borderBottom: '1px solid white' }}>Full Story</a>
+                    </div>
                 </div>
                 {popupOpen ? (
                     <div className='pop-up'>

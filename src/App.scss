@@ -30,3 +30,22 @@ body {
 a {
     text-decoration: none;
 }
+
+@media screen and (max-width: 420px) {
+    .title-vault {
+        font-size: 28px;
+    }
+    .card {
+        font-size: 38px;
+    }
+    .blue-text {
+        padding: 30px 20px;
+    }
+    .icons {
+        width: 90%!important;
+        .footer-icon {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}

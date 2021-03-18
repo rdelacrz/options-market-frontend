@@ -1,5 +1,5 @@
 {
-    "name": "options-market",
+    "name": "options-market-frontend",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -13,7 +13,7 @@
         "sass": "^1.32.8",
         "styled-components": "^5.2.1"
     },
-    "homepage": "https://andrii4ire.github.io/options-market",
+    "homepage": "https://andrii4ire.github.io/options-market-frontend",
     "scripts": {
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",

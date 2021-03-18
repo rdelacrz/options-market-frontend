@@ -15,17 +15,17 @@ const Uniswap = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${uniswap})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
-const Coingecko = styled.a({
+const Coingecko = styled.div({
     height: '40px',
     width: '40px',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${coingecko})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -35,7 +35,7 @@ const Dextools = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${dextools})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -45,7 +45,7 @@ const Discord = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${discord})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -55,7 +55,7 @@ const Gitbook = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${gitbook})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -65,7 +65,7 @@ const Github = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${github})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -75,7 +75,7 @@ const Medium = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${medium})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -85,7 +85,7 @@ const Telegram = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${telegram})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -95,7 +95,7 @@ const Twitter = styled.a({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundImage: `url(${twitter})`,
-    ':hover':{
+    ':hover': {
         opacity: '0.8'
     }
 })
@@ -117,22 +117,22 @@ export const Footer = () => {
     return (
         <>
             <FooterSection>
-                <IconsWrap>
-                    <Coingecko rel="noopener noreferrer" target="_blank" href='' />
-                    <Github rel="noopener noreferrer" target="_blank" href='https://www.degen-vc/options-market-core' />
-                    <Uniswap rel="noopener noreferrer" target="_blank" href='https://www.app.uniswap.org/#/swap?inputCurrency=0x9b75848172677042269c63365b57b0a51c21d031&outputCurrency=ETH' />
-                    <Discord rel="noopener noreferrer" target="_blank" href='https://www.discord.gg/jPvQYdGU4h' />
-                    <Dextools rel="noopener noreferrer" target="_blank" href='https://www.dextools.io/app/uniswap/pair-explorer/0x853d6a51573fb3da673e20852fbfc79ca47ae6f6' />
-                    <Gitbook rel="noopener noreferrer" target="_blank" href='https://www.options-market.gitbook.io/options-market/' />
-                    <Twitter rel="noopener noreferrer" target="_blank" href='https://www.twiiter.com/osmtoken' />
-                    <Telegram rel="noopener noreferrer" target="_blank" href='https://www.t.me/options_market' />
-                    <Medium rel="noopener noreferrer" target="_blank" href='https://www.medium.com/options-market' />
+                <IconsWrap className='icons'>
+                    <Coingecko className='footer-icon' title='Comming soon' />
+                    <Github className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://github.com/degen-vc/options-market-core' />
+                    <Uniswap className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.app.uniswap.org/#/swap?inputCurrency=0x9b75848172677042269c63365b57b0a51c21d031&outputCurrency=ETH' />
+                    <Discord className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.discord.gg/jPvQYdGU4h' />
+                    <Dextools className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.dextools.io/app/uniswap/pair-explorer/0x853d6a51573fb3da673e20852fbfc79ca47ae6f6' />
+                    <Gitbook className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.options-market.gitbook.io/options-market/' />
+                    <Twitter className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.twiiter.com/osmtoken' />
+                    <Telegram className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.t.me/options_market' />
+                    <Medium className='footer-icon' rel="noopener noreferrer" target="_blank" href='https://www.medium.com/options-market' />
                 </IconsWrap>
             </FooterSection>
             <div style={{ fontSize: '22px', textAlign: 'center' }}>@2021 by Options.Market</div>
             <br />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <a style={{ fontSize: '22px', paddingBottom: '40px', color: 'black' }} rel="noopener noreferrer" target="_blank" href='https://options-market.gitbook.io/options-market/disclaimers-and-policies'>Policies and disclaimer</a>
+                <a style={{ fontSize: '22px', paddingBottom: '40px', color: 'black' }} className='policy' rel="noopener noreferrer" target="_blank" href='https://options-market.gitbook.io/options-market/disclaimers-and-policies'>Policies and disclaimer</a>
             </div>
         </>
     )
