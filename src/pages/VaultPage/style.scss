@@ -211,7 +211,7 @@
                 .stake-type-eth {
                     height: 30px;
                     width: 70px;
-                    background-image: url('../assets/eth.png');
+                    background-image: url('../../assets/eth.png');
                     background-size: contain;
                     background-repeat: no-repeat;
                 }
@@ -220,7 +220,7 @@
                 width: 142px;
                 height: 44px;
                 margin-left: 40px;
-                background-image: url('../assets/stake.png');
+                background-image: url('../../assets/stake.png');
                 background-size: contain;
                 background-repeat: no-repeat;
                 cursor: pointer;
@@ -230,14 +230,14 @@
                 &.mr {
                     width: 270px;
                     height: 40px;
-                    background-image: url('../assets/claim.png');
+                    background-image: url('../../assets/claim.png');
                 }
             }
             .unstake-button {
                 width: 260px;
                 height: 44px;
                 margin-left: 55px;
-                background-image: url('../assets/stake.png');
+                background-image: url('../../assets/stake.png');
                 background-size: contain;
                 background-repeat: no-repeat;
                 cursor: pointer;
@@ -328,7 +328,7 @@
                 .stake-button {
                     width: 100%;
                     margin: 0;
-                    background-image: url('../assets/send-eth-x.png');
+                    background-image: url('../../assets/send-eth-x.png');
                     &.unique {
                         margin: 20px 0;
                     }
@@ -570,7 +570,7 @@ html {
             width: 100px;
             height: 28px;
             margin-bottom: 15px;
-            background-image: url('../assets/stake.png');
+            background-image: url('../../assets/stake.png');
             background-size: contain;
             background-repeat: no-repeat;
         }

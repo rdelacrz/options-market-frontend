@@ -1,13 +1,15 @@
+import React from 'react';
 import styled from 'styled-components';
-import uniswap from '../assets/icons/uniswap.png'
-import coingecko from '../assets/icons/coingecko.png'
-import dextools from '../assets/icons/dextools.png'
-import discord from '../assets/icons/discord.png'
-import gitbook from '../assets/icons/gitbook.png'
-import github from '../assets/icons/github.png'
-import medium from '../assets/icons/medium.png'
-import telegram from '../assets/icons/telegram.png'
-import twitter from '../assets/icons/twitter.png'
+
+const uniswap = require('@assets/icons/uniswap.png').default;
+const coingecko = require('@assets/icons/coingecko.png').default;
+const dextools = require('@assets/icons/dextools.png').default;
+const discord = require('@assets/icons/discord.png').default;
+const gitbook = require('@assets/icons/gitbook.png').default;
+const github = require('@assets/icons/github.png').default;
+const medium = require('@assets/icons/medium.png').default;
+const telegram = require('assets/icons/telegram.png').default;
+const twitter = require('@assets/icons/twitter.png').default;
 
 const Uniswap = styled.a({
     height: '40px',

@@ -1,6 +1,6 @@
-import { VaultPage } from './VaultPage'
-import { Header } from './Header'
-import { Footer } from './Footer'
+import { VaultPage } from '@pages'
+import { Header, Footer } from '@components'
+
 import './App.scss';
 
 function App() {

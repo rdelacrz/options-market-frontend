@@ -1,5 +1,7 @@
-import logo from '../assets/logo.png';
+import React from 'react';
 import styled from 'styled-components';
+
+const logo = require('@assets/logo.png');
 
 const HeaderPage = styled.div({
     height: '252px',

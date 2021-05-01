@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 
 import './style.scss'
 
-
 export class VaultPage extends PureComponent {
     constructor() {
         super()
