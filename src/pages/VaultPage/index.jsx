@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Page } from '@layouts';
 
 import './style.scss'
 
@@ -128,7 +129,7 @@ export class VaultPage extends PureComponent {
     render() {
         const { popupOpen } = this.state;
         return (
-            <React.Fragment>
+            <Page>
                 <div className='title-vault'>Dual-Accelerator Vault</div>
                 <div className='timer'></div>
                 <section className='vault'>
@@ -219,7 +220,7 @@ export class VaultPage extends PureComponent {
                         </div>
                     </div>
                 ) : null}
-            </React.Fragment>
+            </Page>
         )
     }
 }
