@@ -1,39 +1,45 @@
 {
-    "compilerOptions": {
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "module": "esnext",
-      "target": "es5",
-      "jsx": "react",
-      "baseUrl": "./src",
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "skipDefaultLibCheck": true,
-      "skipLibCheck": true,
-      "allowSyntheticDefaultImports": true,
-      "allowJs": true,
-      "noEmit": true,   // Used when tsc is used only for type checking, and not for compilation
-      "lib": [
-        "es6",
-        "es2017",
-        "dom"
-      ],
-      "typeRoots": [
-        "node_modules/@types"
-      ],
-      "types": [
-        "node"
-      ],
-      "paths": {
-        "@assets/*": ["assets/*"],
-        "@components": ["components"],
-        "@pages": ["pages"],
-      }
-    },
-    "include": [
-      "./**/*"
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "baseUrl": "./src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "noEmit": true,   // Used when tsc is used only for type checking, and not for compilation
+    "lib": [
+      "es6",
+      "es2017",
+      "dom"
     ],
-    "exclude": [
-      "./node_modules",
-    ]
-  }
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "webpack-env"
+    ],
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@components": ["components"],
+      "@environment": ["environment"],
+      "@models": ["models"],
+      "@pages": ["pages"],
+      "@reduxConfig": ["reduxConfig"],
+      "@routes": ["routes"],
+      "@utilities": ["utilities"],
+    }
+  },
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+  ]
+}

@@ -1,15 +1,22 @@
-import { VaultPage } from '@pages'
-import { Header, Footer } from '@components'
+import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from 'react-redux';
+import { Header, Footer } from '@components';
+import { configureStore, history } from '@reduxConfig';
+import RouterView from '@routes';
 
 import './App.scss';
 
+const store = configureStore();
+
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <VaultPage />
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Header />
+        <RouterView />
+        <Footer />
+      </ConnectedRouter>
+    </Provider>
   );
 }
 
