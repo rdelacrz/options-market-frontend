@@ -3,7 +3,7 @@ import { ContextMenu, ContextMenuItem, DataView, IdentityBadge } from '@aragon/u
 import classnames from 'classnames';
 import { OptionsEntry } from '@models';
 import { useWindowSize } from '@utilities';
-import { format, utcToZonedTime } from 'date-fns-tz';
+import { format } from 'date-fns';
 
 import './styles.scss';
 
@@ -31,15 +31,14 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                 fields={OPTIONS_FIELDS}
                 entries={props.entries}
                 renderEntry={({ type, pair, price, strike, expiration, premium, lp, share, bop, wop, status, feature }: OptionsEntry) => {
-                    const utcDate = utcToZonedTime(expiration, 'UTC');
                     return [
                         <IdentityBadge entity={type.toUpperCase()} />,
                         pair,
                         price,
                         strike,
                         <div className='expiration-container'>
-                            <div className='date-text'>{format(utcDate, 'dd/MM/yyyy', { timeZone: 'UTC' })}</div>
-                            <div className='time-zone'>{format(utcDate, 'hh:mm', { timeZone: 'UTC' })} UTC</div>
+                            <div className='date-text'>{format(expiration, 'dd/MM/yyyy')}</div>
+                            <div className='time-zone'>{format(expiration, 'hh:mm')} UTC</div>
                         </div>,
                         premium,
                         lp,

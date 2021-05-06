@@ -16,7 +16,7 @@ export const HomePage: FunctionComponent<PageProps> = (props) => {
         <Page className='home-page-wrapper'>
             <OptionsTableView entries={[
                 {
-                    type: 'call', pair: 'WBTC-USDC', price: 60000, strike: 80000, expiration: new Date('03-26-2021'), premium: 0.0592,
+                    type: 'call', pair: 'WBTC-USDC', price: 60000, strike: 80000, expiration: new Date(), premium: 0.0592,
                     lp: null, share: 0, bop: null, wop: null, status: 'open', feature: null
                 }
             ]} />
