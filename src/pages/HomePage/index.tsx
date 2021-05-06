@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import classnames from 'classnames';
-import { useSelector } from 'react-redux';
-import { OptionsTableView } from '@components';
+import { FundBreadcrumbs, OptionsTableView } from '@components';
 import { Page } from '@layouts';
 
 import './styles.scss';
@@ -14,6 +12,7 @@ export const HomePage: FunctionComponent<PageProps> = (props) => {
 
     return (
         <Page className='home-page-wrapper'>
+            <FundBreadcrumbs className='home-page-breadcrumbs' />
             <OptionsTableView entries={[
                 {
                     type: 'call', pair: 'WBTC-USDC', price: 60000, strike: 80000, expiration: new Date(), premium: 0.0592,

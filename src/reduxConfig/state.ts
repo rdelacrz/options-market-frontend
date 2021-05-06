@@ -4,13 +4,14 @@
  */
 
 import { RouterState } from 'connected-react-router';
-import { GlobalSettings } from '@models';
+import { FundInfo, GlobalSettings } from '@models';
 
 /**
  * The interface of the Redux store's data state.
  */
 export interface State {
   router?: RouterState;
+  fundInfo: FundInfo;
   globalSettings: GlobalSettings;
 }
 
@@ -19,6 +20,9 @@ export interface State {
  */
  export const initialState: State = {
   // Initialize default state here
+  fundInfo: {
+    fundList: [],
+  },
   globalSettings: {
     pendingDataFetches: [],
   },

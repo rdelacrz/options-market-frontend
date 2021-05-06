@@ -3,6 +3,7 @@
  */
 
 export * from './Footer';
+export * from './FundBreadcrumbs';
 export * from './Header';
 export * from './OptionsTableView';
 export * from './TopBar';

@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState } from 'react';
 import { Main, Header as AragonHeader, Button, IconPlus, Tag } from '@aragon/ui'
 import classnames from 'classnames';
 import styled from 'styled-components';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
 const logo = require('@assets/logo.png').default;
 

@@ -7,7 +7,7 @@ import { SagaMiddleware } from '@redux-saga/core';
 import { take, fork, cancel } from 'redux-saga/effects';
 import { Saga } from '@redux-saga/types';
 
-import { rootSaga } from './index';
+import rootSaga from './index';
 
 const sagas = [rootSaga];
 

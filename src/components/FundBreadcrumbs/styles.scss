@@ -1,0 +1,27 @@
+.fund-breadcrumbs-wrapper {
+    display: flex;
+    font-size: 26px;
+    font-weight: 400;
+    padding: 10px 0;
+    .fund-breadcrumb-header {
+        color: black;
+        font-size: inherit;
+        font-weight: inherit;
+        margin: 0;
+        overflow: hidden;
+        padding: 0 7px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.link {
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+            &:hover, &:focus {
+                background-color: rgba(#0A578F, 0.05);
+            }
+        }
+    }
+    .fund-number-text {
+        color: rgba(#0A578F, 0.7);
+    }
+}

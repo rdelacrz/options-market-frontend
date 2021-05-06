@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback } from 'react';
-import { ContextMenu, ContextMenuItem, DataView, IdentityBadge } from '@aragon/ui';
+import { ContextMenu, ContextMenuItem, DataView } from '@aragon/ui';
 import classnames from 'classnames';
 import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
@@ -34,14 +34,14 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
     }, [location.pathname]); 
 
     return (
-        <div className={classnames('options-table-view-wrapper', mode)}>
+        <div className={classnames('options-table-view-wrapper', mode, {[props.className]: !!props.className})}>
             <DataView
                 mode={mode}
                 fields={OPTIONS_FIELDS}
                 entries={props.entries}
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
                     return [
-                        <IdentityBadge entity={optionsEntry.type.toUpperCase()} />,
+                        optionsEntry.type.toUpperCase(),
                         optionsEntry.pair,
                         optionsEntry.price,
                         optionsEntry.strike,

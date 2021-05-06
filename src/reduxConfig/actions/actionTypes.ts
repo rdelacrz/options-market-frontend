@@ -5,6 +5,10 @@ export enum ActionType {
   START_FETCHING_DATA = 'START_FETCHING_DATA',
   FINISH_FETCHING_DATA = 'FINISH_FETCHING_DATA',
   CLEAR_DATA_FETCHES = 'CLEAR_DATA_FETCHES',
+
+  // Funds info actions
+  GET_FUNDS_LIST = 'GET_FUNDS_LIST',
+  UPDATE_FUNDS_LIST = 'UPDATE_FUNDS_LIST',
 }
 
 export interface Action extends BaseAction {

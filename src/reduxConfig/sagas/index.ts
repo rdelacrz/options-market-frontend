@@ -3,7 +3,7 @@ import { all, call, spawn } from 'redux-saga/effects';
 
 import routingSaga from './routing.saga';
 
-export function* rootSaga () {
+export default function* rootSaga () {
   // Place sagas from other files here
   const sagas: Saga[] = [
     routingSaga,
