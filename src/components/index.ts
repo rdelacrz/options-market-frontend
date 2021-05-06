@@ -4,5 +4,5 @@
 
 export * from './Footer';
 export * from './Header';
-export * from './TableView';
+export * from './OptionsTableView';
 export * from './TopBar';
