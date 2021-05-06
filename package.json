@@ -2,6 +2,13 @@
   "name": "options-market-frontend",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
+  },
   "dependencies": {
     "@aragon/ui": "^1.7.0",
     "@n8tb1t/use-scroll-position": "^2.0.3",
@@ -81,6 +88,7 @@
     "postcss-scss": "^3.0.5",
     "react-dev-utils": "^11.0.4",
     "react-refresh": "^0.8.3",
+    "react-scripts": "^4.0.1",
     "resolve-url-loader": "^3.1.2",
     "sass": "^1.32.8",
     "sass-loader": "^10.0.5",
@@ -99,13 +107,6 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "homepage": "https://andrii4ire.github.io/options-market-frontend",
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",

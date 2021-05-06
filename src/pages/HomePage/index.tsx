@@ -14,7 +14,7 @@ export const HomePage: FunctionComponent<PageProps> = (props) => {
 
     return (
         <Page className='home-page-wrapper'>
-            Home Page Content
+            Home Page Contents
         </Page>
     );
 }

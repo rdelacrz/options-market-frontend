@@ -3,7 +3,7 @@ import { applyMiddleware, compose as regularCompose, createStore, Store } from '
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import { history } from '../history';
 import { createRootReducer } from '../reducers';
-import { State } from './state';
+import { initialState, State } from './state';
 import { dataStorage } from '@utilities';
 
 import SagaManager from '../sagas/sagaManager';
@@ -38,7 +38,7 @@ const handleDevelopmentHMR = (store: Store<State>, sagaMiddleware: SagaMiddlewar
  */
 export const configureStore = () => {
   // Gets current application state from session storage, or defaults to preloaded state
-  const appState = dataStorage.get();
+  const appState = dataStorage.get() || initialState;
 
   // Handles application side effects
   const sagaMiddleware = createSagaMiddleware();
