@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Page } from '@layouts';
 
-import './style.scss'
+import './styles.scss'
 
 export class VaultPage extends PureComponent {
     constructor() {

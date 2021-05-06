@@ -10,7 +10,7 @@ export const getWeb3 = () => {
           await window.ethereum.enable();
           resolve(web3);
         } catch (error) {
-          // reject(error); Don't need to do anything here
+          // reject(error); Don't need to do anything if user cancels
         }
       } else if (window.web3) {
         const web3 = window.web3;

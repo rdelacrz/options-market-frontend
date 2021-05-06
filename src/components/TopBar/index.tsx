@@ -1,4 +1,7 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useCallback, useState } from 'react';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router';
 import { Bar, Button, IconHome, IconConnect, IconSettings } from '@aragon/ui';
 import classnames from 'classnames';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
@@ -11,6 +14,9 @@ interface TopBarProps {
 }
 
 export const TopBar: FunctionComponent<TopBarProps> = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
   const [solid, setSolid] = useState(false);
 
   // Controls whether top bar is solid or not depending on scroll position
@@ -27,6 +33,15 @@ export const TopBar: FunctionComponent<TopBarProps> = () => {
     100
   );
 
+  /**
+   * Navigates back to the home page if not already there.
+   */
+  const handleHomeClick = useCallback(() => {
+    if (location.pathname !== '/') {
+      dispatch(push('/'));
+    }
+  }, [location.pathname]);
+
   return (
     <React.Fragment>
       <Bar
@@ -39,6 +54,7 @@ export const TopBar: FunctionComponent<TopBarProps> = () => {
               label='Home'
               display='icon'
               icon={<IconHome className='icon' />}
+              onClick={handleHomeClick}
             />
           </React.Fragment>
         }
@@ -49,8 +65,8 @@ export const TopBar: FunctionComponent<TopBarProps> = () => {
               id='connectAccountBtn'
               className='primary'
               label='Connect Account'
-              onClick={getWeb3}
               icon={<IconConnect className='icon' />}
+              onClick={getWeb3}
             />
             <Button
               id='settingsBtn'

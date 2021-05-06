@@ -1,6 +1,8 @@
-import React, { FunctionComponent, useRef, useState } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import { ContextMenu, ContextMenuItem, DataView, IdentityBadge } from '@aragon/ui';
 import classnames from 'classnames';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
 import { OptionsEntry } from '@models';
 import { useWindowSize } from '@utilities';
 import { format } from 'date-fns';
@@ -12,44 +14,57 @@ const OPTIONS_FIELDS = [
     'BOP', 'WOP', 'Status', 'Feature (blank)', 'Dropdown (blank)'
 ];
 
-const ACTION_DROPDOWN_OPTIONS = [
-    'Provide', 'Withdraw', 'Buy', 'Exercise', 'Sell', 'Details'
-];
-
 interface OptionsTableViewProps {
     className?: string;
     entries: OptionsEntry[];
+    detailMode?: boolean;
 }
 
 export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props) => {
+    const dispatch = useDispatch();
+
     const { width } = useWindowSize();
     const mode = width > 900 ? 'table' : 'list';
+
+    /**
+     * Navigates to the fund page associated with the selected entry.
+     */
+    const handleDetailsClick = useCallback((fundId: number) => {
+        dispatch(push(`/funds/${fundId}`));
+    }, [location.pathname]); 
+
     return (
         <div className={classnames('options-table-view-wrapper', mode)}>
             <DataView
                 mode={mode}
                 fields={OPTIONS_FIELDS}
                 entries={props.entries}
-                renderEntry={({ type, pair, price, strike, expiration, premium, lp, share, bop, wop, status, feature }: OptionsEntry) => {
+                renderEntry={(optionsEntry: OptionsEntry, index: number) => {
                     return [
-                        <IdentityBadge entity={type.toUpperCase()} />,
-                        pair,
-                        price,
-                        strike,
+                        <IdentityBadge entity={optionsEntry.type.toUpperCase()} />,
+                        optionsEntry.pair,
+                        optionsEntry.price,
+                        optionsEntry.strike,
                         <div className='expiration-container'>
-                            <div className='date-text'>{format(expiration, 'dd/MM/yyyy')}</div>
-                            <div className='time-zone'>{format(expiration, 'hh:mm')} UTC</div>
+                            <div className='date-text'>{format(optionsEntry.expiration, 'dd/MM/yyyy')}</div>
+                            <div className='time-zone'>{format(optionsEntry.expiration, 'hh:mm')} UTC</div>
                         </div>,
-                        premium,
-                        lp,
-                        share,
-                        bop, wop,
-                        status,
-                        feature,
+                        optionsEntry.premium,
+                        optionsEntry.lp,
+                        optionsEntry.share,
+                        optionsEntry.bop,
+                        optionsEntry.wop,
+                        optionsEntry.status,
+                        optionsEntry.feature,
                         <ContextMenu>
-                            {ACTION_DROPDOWN_OPTIONS.map(option => (
-                                <ContextMenuItem key={option}>{option}</ContextMenuItem>
-                            ))}
+                            <ContextMenuItem>Provide</ContextMenuItem>
+                            <ContextMenuItem>Withdraw</ContextMenuItem>
+                            <ContextMenuItem>Buy</ContextMenuItem>
+                            <ContextMenuItem>Exercise</ContextMenuItem>
+                            <ContextMenuItem>Sell</ContextMenuItem>
+                            {!props.detailMode && (
+                                <ContextMenuItem onClick={() => handleDetailsClick(index)}>Details</ContextMenuItem>
+                            )}
                         </ContextMenu>
                     ]
                 }}
