@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Main, Header as AragonHeader, Button, IconPlus, Tag } from '@aragon/ui'
-import classnames from 'classnames';
 import styled from 'styled-components';
+
+import './styles.scss';
 
 const logo = require('@assets/logo.png').default;
 
@@ -31,17 +31,22 @@ const Nav = styled.div({
     display: 'flex',
     justifyContent: 'space-between',
     width: '210px',
-    padding: '20px 0',
+    padding: '8px 0',
     margin: '0 auto'
 })
 
 export const Header: FunctionComponent<{}> = () => {
     
     return (
-        <HeaderPage>
+        <HeaderPage className='header-wrapper'>
             <Logo />
             <Title>Options.Market</Title>
             <Nav />
+            <div className='header-links-container'>
+                <a href='https://medium.com/options-market' target='_blank'>About</a>
+                <a href='https://options-market.gitbook.io/options-market/ama' target='_blank'>Launch</a>
+                <a href='https://medium.com/options-market/option-market-roadmap-2021-deb82330e2de' target='_blank'>Roadmap</a>
+            </div>
         </HeaderPage>
     )
 }
