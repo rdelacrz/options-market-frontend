@@ -14,5 +14,4 @@ export interface OptionsEntry {
   wop: string;
   status: 'open' | 'closed';
   feature: string;
-  dropdown: string;
 }
