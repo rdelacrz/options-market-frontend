@@ -1,0 +1,39 @@
+$hardcoded-bar-height: 64px;    // Change height of bar here
+
+div.top-bar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(white, 0.95);
+    // Border CSS is separated into individual components because regular "border" property was causing inconsistent behavior on transition
+    border-bottom: solid 1px;
+    border-bottom-color: #DDE4E9 !important;    // Enforces border color to avoid weird black transition glitch
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    height: $hardcoded-bar-height !important;
+    margin-bottom: 0;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+    width: 100vw;
+    &:not(.solid) {
+        background: transparent;
+        border-bottom: none;
+        border-width: 0px;
+    }
+    .action-buttons {
+        display: flex;
+        #osmBtn {
+            min-width: 40px;
+        }
+        button {
+            margin-left: 20px;
+        }
+    }
+}
+
+.top-bar-fixed-buffer {
+    padding-bottom: $hardcoded-bar-height;
+}

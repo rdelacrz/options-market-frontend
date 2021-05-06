@@ -17,7 +17,7 @@ export interface State {
 /**
  * Contains the initial values for the Redux store's data state when it is first initialized. 
  */
-export const initialState: State = {
+ export const initialState: State = {
   // Initialize default state here
   globalSettings: {
     pendingDataFetches: [],

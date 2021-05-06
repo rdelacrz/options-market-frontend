@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { Main } from '@aragon/ui';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { configureStore, history } from '@reduxConfig';

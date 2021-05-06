@@ -1,6 +1,7 @@
 import { LOCATION_CHANGE } from 'connected-react-router';
 import { takeLatest, put, select } from 'redux-saga/effects';
-import { clearDataFetches, State } from '@reduxConfig';
+import { clearDataFetches } from '../actions';
+import { State } from '../state';
 
 /**
  * Clears list of pending data fetches if route changes.

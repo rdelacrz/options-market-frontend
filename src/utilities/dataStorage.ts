@@ -4,13 +4,12 @@
 
 import { createStoreon, StoreonModule } from 'storeon';
 import { persistState } from '@storeon/localstorage';
-import { initialState, State } from '@reduxConfig';
 
 const appDataKey = 'OPTIONS_MARKET_APP_DATA';
 
-const appData: StoreonModule<State> = store => {
-  store.on('@init', () => ({...initialState}));
-  store.on('saveState', (state, updatedState: State) => updatedState);
+const appData: StoreonModule<any> = store => {
+  store.on('@init', () => ({}));
+  store.on('saveState', (state, updatedState) => updatedState);
 }
 
 export const dataStorage = createStoreon([

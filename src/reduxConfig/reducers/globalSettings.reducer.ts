@@ -1,7 +1,10 @@
-import { ActionType, Action, initialState } from '@reduxConfig';
+import { ActionType, Action } from '../actions';
+import { initialState } from '../state';
 import { GlobalSettings } from '@models';
 
-const globalSettingsReducer = (globalSettings = initialState.globalSettings, action: Action): GlobalSettings => {
+const initialGlobalSettings = Object.assign({}, initialState.globalSettings);
+
+const globalSettingsReducer = (globalSettings = initialGlobalSettings, action: Action): GlobalSettings => {
   let pendingDataFetches: string[];
   switch (action.type) {
     case ActionType.CLEAR_DATA_FETCHES:

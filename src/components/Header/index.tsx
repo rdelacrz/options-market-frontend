@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
+import { Main, Header as AragonHeader, Button, IconPlus, Tag } from '@aragon/ui'
 import classnames from 'classnames';
 import styled from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
@@ -36,23 +37,12 @@ const Nav = styled.div({
 })
 
 export const Header: FunctionComponent<{}> = () => {
-    const [solid, setSolid] = useState(false);
-
-    useScrollPosition(({ currPos }) => {
-        const solidNow = currPos.y <= 0;
-        if (solidNow !== solid) {
-            setSolid(solidNow);     // Only performs action if value has changed
-        }
-    }, [solid]);
+    
     return (
-        <HeaderPage className={classnames('header-wrapper', {'solid': solid})}>
+        <HeaderPage>
             <Logo />
             <Title>Options.Market</Title>
-            <Nav>
-                <a style={{color: 'black'}} rel="noopener noreferrer" target="_blank" href='https://medium.com/options-market'>About</a>
-                <a style={{color: 'black'}} rel="noopener noreferrer" target="_blank" href='https://options-market.gitbook.io/options-market/ama'>Launch</a>
-                <a style={{ color: 'black' }} rel="noopener noreferrer" target="_blank" href='https://medium.com/options-market/option-market-roadmap-2021-deb82330e2de'>Roadmap</a>
-            </Nav>
+            <Nav />
         </HeaderPage>
     )
 }

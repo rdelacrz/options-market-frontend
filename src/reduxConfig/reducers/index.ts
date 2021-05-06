@@ -1,7 +1,7 @@
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { combineReducers } from 'redux';
-import { State } from '@reduxConfig';
+import { State } from '../state';
 
 import globalSettings from './globalSettings.reducer';
 
