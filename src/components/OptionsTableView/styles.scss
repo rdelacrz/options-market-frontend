@@ -1,0 +1,16 @@
+.options-table-view-wrapper {
+    &.table {
+        .expiration-container {
+            align-items: center;
+        }
+    }
+    .expiration-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        .time-zone {
+            font-size: 10px;
+        }
+    }
+}
