@@ -17,14 +17,11 @@ body {
     text-align: center;
 }
 
-.button {
-    padding: 5px 10px;
-    border-radius: 2px;
-    cursor: pointer;
-    &.cancel {
-        color: white;
-        background: rgba(255, 0, 0, 0.7);
-    }
+.app-container {
+    max-width: 1500px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
 }
 
 button {

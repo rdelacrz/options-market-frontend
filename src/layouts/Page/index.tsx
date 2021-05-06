@@ -20,7 +20,7 @@ export const Page: FunctionComponent<PageProps> = (props) => {
         <div className={classnames('page-wrapper', { [props.className]: !!props.className })}>
             <TopBar />
             <Header />
-            <main className={classnames('page-main-content-wrapper', { [props.className]: !!props.className })}>
+            <main className={classnames('page-main-content-wrapper app-container', { [props.className]: !!props.className })}>
                 {pageLoading ? <div className='loading-icon' /> : props.children}
             </main>
             <Footer />
