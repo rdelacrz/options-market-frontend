@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { Main } from '@aragon/ui';
 import { ConnectedRouter } from 'connected-react-router';
 import { providers } from 'ethers'
 import { Provider } from 'react-redux';
@@ -20,9 +19,7 @@ const App: FunctionComponent<{}> = () => {
         <Web3ReactProvider getLibrary={getLibrary}>
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <Main layout={false}>
-                        <RouterView />
-                    </Main>
+                    <RouterView />
                 </ConnectedRouter>
             </Provider>
         </Web3ReactProvider>

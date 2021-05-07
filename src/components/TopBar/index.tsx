@@ -1,38 +1,21 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
+import { Bar, Button, IconHome, IconSettings } from '@aragon/ui';
 import classnames from 'classnames';
 import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
-import { Bar, Button, IconHome, IconSettings } from '@aragon/ui';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import EthAccountButton from './EthAccountButton';
 
 import './styles.scss';
 
 interface TopBarProps {
   className?: string;
+  solid?: boolean;
 }
 
-export const TopBar: FunctionComponent<TopBarProps> = () => {
+export const TopBar: FunctionComponent<TopBarProps> = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-
-  // Local variable for determining solid state of bar
-  const [solid, setSolid] = useState(false);
-
-  // Controls whether top bar is solid or not depending on scroll position
-  useScrollPosition(
-    ({ currPos }) => {
-      const solidNow = currPos.y > 0;
-      if (solidNow !== solid) {
-        setSolid(solidNow);   // Only performs action if value has changed
-      }
-    },
-    [solid],
-    undefined,
-    true,
-    100
-  );
 
   /**
    * Navigates back to the home page if not already there.
@@ -46,7 +29,7 @@ export const TopBar: FunctionComponent<TopBarProps> = () => {
   return (
     <React.Fragment>
       <Bar
-        className={classnames('top-bar-wrapper', { solid: solid })}
+        className={classnames('top-bar-wrapper', { solid: props.solid })}
         primary={
           <React.Fragment>
             <Button

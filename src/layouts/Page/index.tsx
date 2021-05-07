@@ -1,23 +1,40 @@
-import React, { FunctionComponent } from 'react';
-import { Main, Root, RootPortal } from '@aragon/ui';
+import React, { FunctionComponent, useCallback, useState } from 'react';
+import { Main } from '@aragon/ui';
 import classnames from 'classnames';
+import { throttle } from 'lodash';
 import { Header, Footer, TopBar } from '@components';
 
 import './style.scss';
 
 interface PageProps {
     className?: string;
+    pageContentClassName?: string;
 }
 
 export const Page: FunctionComponent<PageProps> = (props) => {
+    const [solidTopBar, setSolidTopBar] = useState(false);
+
+    const updateSolidScrollBar = useCallback(throttle((solid) => {
+        setSolidTopBar(solid);
+    }, 50), []);
+
+    const handleScroll = useCallback((event) => {
+        updateSolidScrollBar(event.target.scrollTop > 0);
+    }, [updateSolidScrollBar]);
+
+    const pageWrapperClass = classnames('page-wrapper app-container', { [props.className]: !!props.className });
+    const pageContentClass = classnames('page-main-content-wrapper', { [props.pageContentClassName]: !!props.pageContentClassName });
+
     return (
-        <div className={classnames('page-wrapper app-container', { [props.className]: !!props.className })}>
-            <TopBar />
-            <Header />
-            <main className={classnames('page-main-content-wrapper', { [props.className]: !!props.className })}>
-                {props.children}
-            </main>
-            <Footer />
-        </div>
+        <Main layout={false} scrollView={false}>
+            <div className={pageWrapperClass} onScroll={handleScroll}>
+                <TopBar solid={solidTopBar} />
+                <Header />
+                <main className={pageContentClass}>
+                    {props.children}
+                </main>
+                <Footer />
+            </div>
+        </Main>
     );
 }
