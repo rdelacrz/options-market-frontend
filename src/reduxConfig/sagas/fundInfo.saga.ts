@@ -3,6 +3,9 @@ import { ActionType, startFetchingData, finishFetchingData, updateFunds,  } from
 import environment from '@environment';
 import { getMockFundList } from '@services';
 
+/**
+ * Gets list of funds for performing CALL and PUT options.
+ */
 function* getFundsList() {
   yield put(startFetchingData(ActionType.GET_FUNDS_LIST));
 
