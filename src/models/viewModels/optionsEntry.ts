@@ -1,12 +1,12 @@
 /**
- * Encapsulates information related to an option within the OptionsTableView component.
+ * Encapsulates data related to an option.
  */
 export interface OptionsEntry {
   type: 'call' | 'put';
   pair: string;
   price: number;
   strike: number;
-  expiration: Date;
+  expiration: string;
   premium: number;
   lp: string;
   share: number;

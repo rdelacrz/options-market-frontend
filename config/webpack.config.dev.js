@@ -131,6 +131,7 @@ module.exports = (env, argv) => {
             new webpack.DefinePlugin({
                 'process.env' : {
                     APP_PATH: JSON.stringify(env ? env.APP_PATH : ''),
+                    MOCK: JSON.stringify(env ? env.MOCK || 'false' : 'false'),
                     IS_DEV: JSON.stringify(isDev ? 'true' : 'false'),
                 }
             }),

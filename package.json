@@ -6,6 +6,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "webpack serve --mode=development --hot --config=config/webpack.config.dev.js",
+    "start:mock": "webpack serve --mode=development --hot --env MOCK=true --config=config/webpack.config.dev.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },

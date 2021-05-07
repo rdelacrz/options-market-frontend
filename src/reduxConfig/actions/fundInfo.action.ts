@@ -1,3 +1,4 @@
+import { OptionsEntry } from '@models';
 import { ActionType, Action } from './actionTypes';
 
 /**
@@ -14,7 +15,7 @@ export const getFunds = (): Action => ({
  * 
  * @returns Action with cleared list of funds as payload for reducer.
  */
- export const updateFunds = (fundList: any[]): Action => ({
+ export const updateFunds = (fundList: OptionsEntry[]): Action => ({
    type: ActionType.UPDATE_FUNDS_LIST,
    payload: {fundList},
 });

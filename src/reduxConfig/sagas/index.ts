@@ -1,11 +1,13 @@
 import { Saga } from 'redux-saga';
 import { all, call, spawn } from 'redux-saga/effects';
 
+import fundInfoSaga from './fundInfo.saga';
 import routingSaga from './routing.saga';
 
 export default function* rootSaga () {
   // Place sagas from other files here
   const sagas: Saga[] = [
+    fundInfoSaga,
     routingSaga,
   ];
 

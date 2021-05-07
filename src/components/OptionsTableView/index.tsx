@@ -17,6 +17,7 @@ const OPTIONS_FIELDS = [
 interface OptionsTableViewProps {
     className?: string;
     entries: OptionsEntry[];
+    loading?: boolean;
     detailMode?: boolean;
 }
 
@@ -36,18 +37,19 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
     return (
         <div className={classnames('options-table-view-wrapper', mode, {[props.className]: !!props.className})}>
             <DataView
-                mode={mode}
+                mode={mode} status={props.loading ? 'loading' : 'default'}
                 fields={OPTIONS_FIELDS}
-                entries={props.entries}
+                entries={props.loading ? [] : props.entries}
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
+                    const utcDate = new Date(optionsEntry.expiration);
                     return [
                         optionsEntry.type.toUpperCase(),
                         optionsEntry.pair,
                         optionsEntry.price,
                         optionsEntry.strike,
                         <div className='expiration-container'>
-                            <div className='date-text'>{format(optionsEntry.expiration, 'dd/MM/yyyy')}</div>
-                            <div className='time-zone'>{format(optionsEntry.expiration, 'hh:mm')} UTC</div>
+                            <div className='date-text'>{format(utcDate, 'dd/MM/yyyy')}</div>
+                            <div className='time-zone'>{format(utcDate, 'hh:mm')} UTC</div>
                         </div>,
                         optionsEntry.premium,
                         optionsEntry.lp,
