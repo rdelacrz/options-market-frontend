@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { FundBreadcrumbs, OptionsTableView } from '@components';
+import { DetailsTableView, FundBreadcrumbs, OptionsTableView } from '@components';
 import { Page } from '@layouts';
 import { OptionsEntry } from '@models';
+import { State } from '@reduxConfig';
 
 import './styles.scss';
 
@@ -11,26 +13,19 @@ interface PageProps {
 }
 
 export const FundPage: FunctionComponent<PageProps> = (props) => {
+    /* Route parameters */
     const params = useParams();
     const fundId = Number(params['id']);
 
-    // TO IMPLEMENT: REPLACE WITH ACTUAL DATA ONCE LINK TO ETH NETWORK IS COMPLETE
-    const entries: OptionsEntry[] = [
-        {
-            type: 'call', pair: 'WBTC-USDC', price: 60000, strike: 80000, expiration: new Date(), premium: 0.0592,
-            lp: null, share: 0, bop: null, wop: null, status: 'open', feature: null
-        },
-        {
-            type: 'put', pair: 'WBTC-ETH', price: 60000, strike: 80000, expiration: new Date(), premium: 0.0592,
-            lp: null, share: 0, bop: null, wop: null, status: 'open', feature: null
-        }
-    ]
-    const entry = entries[fundId];
+    /* Redux parameters */
+    const fundListEntries = useSelector<State, OptionsEntry[]>(state => state.fundInfo.fundList) || [];
+    const entryArray = fundId !== undefined && fundId < fundListEntries.length ? [fundListEntries[fundId]] : [];
 
     return (
         <Page className='fund-page-wrapper'>
             <FundBreadcrumbs className='fund-page-breadcrumbs' fundId={fundId} />
-            <OptionsTableView entries={[entry]} />
+            <OptionsTableView className='selected-option-entry-table' entries={entryArray} detailMode />
+            <DetailsTableView optionEntry={entryArray.length > 0 ? entryArray[0] : undefined} />
         </Page>
     );
 }

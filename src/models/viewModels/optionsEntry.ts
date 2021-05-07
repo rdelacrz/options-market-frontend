@@ -14,4 +14,14 @@ export interface OptionsEntry {
   wop: string;
   status: 'open' | 'closed';
   feature: string;
+
+  // Properties to be shown in after clicking details
+  openInterest: number;
+  breakEven: number;
+  delta: number;
+  gamma: number;
+  theta: number;
+  vega: number;
+  tvl: number;
+  apy: number;
 }

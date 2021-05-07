@@ -4,6 +4,29 @@
             align-items: center;
         }
     }
+    .option-type {
+        border-radius: 12px;
+        box-sizing: border-box;
+        color: white;
+        font-weight: bold;
+        min-width: 60px;
+        padding: 5px;
+        text-align: center;
+        &.call {
+            background-image: linear-gradient(190deg, #1f3f1f -100%, #6AD66A 50%);
+        }
+        &.put {
+            background-image: linear-gradient(190deg, #3b2416 -100%, #f72424 50%);
+        }
+    }
+    .options-pair-link {
+        color: #0A578F;
+        font-weight: 600;
+        transition: color 0.3s ease-in-out;
+        &:hover, &:focus {
+            color: rgba(#0A578F, 0.7);
+        }
+    }
     .expiration-container {
         display: flex;
         flex-direction: column;

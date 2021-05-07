@@ -3,6 +3,7 @@ import { ContextMenu, ContextMenuItem, DataView } from '@aragon/ui';
 import classnames from 'classnames';
 import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { OptionsEntry } from '@models';
 import { useWindowSize } from '@utilities';
 import { format } from 'date-fns';
@@ -43,8 +44,12 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
                     const utcDate = new Date(optionsEntry.expiration);
                     return [
-                        optionsEntry.type.toUpperCase(),
-                        optionsEntry.pair,
+                        <div className={classnames('option-type', optionsEntry.type)}>
+                            {optionsEntry.type.toUpperCase()}
+                        </div>,
+                        <Link className='options-pair-link' to={`/funds/${index}`}>
+                            {optionsEntry.pair}
+                        </Link>,
                         optionsEntry.price,
                         optionsEntry.strike,
                         <div className='expiration-container'>

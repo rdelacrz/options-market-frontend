@@ -1,5 +1,4 @@
 $hardcoded-bar-height: 64px;    // Change height of bar here
-$eth-identicon-dimension: 40px;
 
 div.top-bar-wrapper {
     position: fixed;
@@ -34,22 +33,6 @@ div.top-bar-wrapper {
             border-radius: 10px;
             margin-left: 20px;
             min-height: 40px;
-            &:not(.primary) {
-                border: solid 2px #0A578F;
-            }
-        }
-        .ethereum-address-badge {
-            // Identity badge level and below should have adjusted dimensions
-            > div {
-                div {
-                    height: $eth-identicon-dimension;
-                    width: $eth-identicon-dimension;
-                    canvas {
-                        height: $eth-identicon-dimension !important;
-                        width: $eth-identicon-dimension !important;
-                    }
-                }
-            }
         }
     }
 }
