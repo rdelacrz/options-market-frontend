@@ -22,8 +22,8 @@ export const Page: FunctionComponent<PageProps> = (props) => {
         updateSolidScrollBar(event.target.scrollTop > 0);
     }, [updateSolidScrollBar]);
 
-    const pageWrapperClass = classnames('page-wrapper app-container', { [props.className]: !!props.className });
-    const pageContentClass = classnames('page-main-content-wrapper', { [props.pageContentClassName]: !!props.pageContentClassName });
+    const pageWrapperClass = classnames('page-wrapper', { [props.className]: !!props.className });
+    const pageContentClass = classnames('page-main-content-wrapper app-container', { [props.pageContentClassName]: !!props.pageContentClassName });
 
     return (
         <Main layout={false} scrollView={false}>
