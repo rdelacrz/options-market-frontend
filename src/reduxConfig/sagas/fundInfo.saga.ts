@@ -1,7 +1,10 @@
+import { AxiosResponse } from 'axios';
 import { call, takeLatest, put, select } from 'redux-saga/effects';
-import { ActionType, startFetchingData, finishFetchingData, updateFunds,  } from '../actions';
+import { ActionType, startFetchingData, finishFetchingData, updateFunds } from '../actions';
 import environment from '@environment';
-import { getMockFundList } from '@services';
+import { MarketData, OptionsEntry } from '@models';
+import { getMockFundList, getMarkets } from '@services';
+import { convertMarketDataToFundList } from '@utilities';
 
 /**
  * Gets list of funds for performing CALL and PUT options.
@@ -13,8 +16,9 @@ function* getFundsList() {
     const mockFundList = yield call(getMockFundList);
     yield put(updateFunds(mockFundList));
   } else {
-    // TO IMPLEMENT: Link to service that gets ethereum fund data
-    yield put(updateFunds([]));
+    const marketData: AxiosResponse<MarketData> = yield call(getMarkets);
+    const fundList = convertMarketDataToFundList(marketData.data);
+    yield put(updateFunds(fundList));
   }
 
   yield put(finishFetchingData(ActionType.GET_FUNDS_LIST));

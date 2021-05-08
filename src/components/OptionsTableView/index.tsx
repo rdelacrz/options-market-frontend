@@ -42,7 +42,7 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                 fields={OPTIONS_FIELDS}
                 entries={props.loading ? [] : props.entries}
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
-                    const utcDate = new Date(optionsEntry.expiration);
+                    const utcDate = new Date(Number(optionsEntry.expiration));
                     return [
                         <div className={classnames('option-type', optionsEntry.type)}>
                             {optionsEntry.type.toUpperCase()}

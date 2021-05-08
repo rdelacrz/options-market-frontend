@@ -555,6 +555,15 @@ module.exports = function (webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            // Allows application to handle GraphQL files
+            {
+              test: /\.(graphql|gql)$/,
+              exclude: /node_modules/,
+              loader: '@graphql-tools/webpack-loader',
+              options: {
+                /* ... */
+              }
+            },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
           ],

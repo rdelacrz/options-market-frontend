@@ -1,0 +1,41 @@
+query GetMarkets {
+  markets {
+    id
+    marketStyle
+    marketIndex
+    amm {
+      id
+    }
+    createdBlock
+    createdTimestamp
+    createdTransaction
+    collateralToken {
+      id
+      decimals
+      name
+      symbol
+    }
+    paymentToken {
+      id
+      decimals
+      name
+      symbol
+    }
+    marketName
+    expirationDate
+    priceRatio
+    exerciseFeeBasisPoints
+    closeFeeBasisPoints
+    claimFeeBasisPoints
+    wToken {
+      id
+      decimals
+      totalSupply
+    }
+    bToken {
+      id
+      decimals
+      totalSupply
+    }
+  }
+}

@@ -91,7 +91,16 @@ module.exports = (env, argv) => {
                         name: '[name].[ext]',
                         outputPath: 'images/'
                     }
-                }
+                },
+                // Allows application to handle GraphQL files
+                {
+                    test: /\.(graphql|gql)$/,
+                    exclude: /node_modules/,
+                    loader: '@graphql-tools/webpack-loader',
+                    options: {
+                        /* ... */
+                    }
+                },
             ]
         },
         resolve: {

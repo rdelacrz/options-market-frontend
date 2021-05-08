@@ -2,6 +2,7 @@
  * Encapsulates data related to an option.
  */
 export interface OptionsEntry {
+  id: string;
   type: 'call' | 'put';
   pair: string;
   price: number;
