@@ -42,7 +42,6 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                 fields={OPTIONS_FIELDS}
                 entries={props.loading ? [] : props.entries}
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
-                    const utcDate = new Date(Number(optionsEntry.expiration));
                     return [
                         <div className={classnames('option-type', optionsEntry.type)}>
                             {optionsEntry.type.toUpperCase()}
@@ -53,8 +52,8 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         optionsEntry.price,
                         optionsEntry.strike,
                         <div className='expiration-container'>
-                            <div className='date-text'>{format(utcDate, 'dd/MM/yyyy')}</div>
-                            <div className='time-zone'>{format(utcDate, 'hh:mm')} UTC</div>
+                            <div className='date-text'>{format(optionsEntry.expiration, 'dd/MM/yyyy')}</div>
+                            <div className='time-zone'>{format(optionsEntry.expiration, 'hh:mm')} UTC</div>
                         </div>,
                         optionsEntry.premium,
                         optionsEntry.lp,

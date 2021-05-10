@@ -7,7 +7,7 @@ export interface OptionsEntry {
   pair: string;
   price: number;
   strike: number;
-  expiration: string;
+  expiration: Date;
   premium: number;
   lp: string;
   share: number;
