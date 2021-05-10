@@ -9,6 +9,7 @@ export enum ActionType {
   // Funds info actions
   GET_FUNDS_LIST = 'GET_FUNDS_LIST',
   UPDATE_FUNDS_LIST = 'UPDATE_FUNDS_LIST',
+  UPDATE_FLAGGED_FUNDS = 'UPDATE_FLAGGED_FUNDS',
 }
 
 export interface Action extends BaseAction {

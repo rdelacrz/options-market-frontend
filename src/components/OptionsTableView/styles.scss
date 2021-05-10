@@ -36,4 +36,12 @@
             font-size: 10px;
         }
     }
+    .entry-actions-wrapper {
+        display: flex;
+        align-items: center;
+        .entry-flag {
+            cursor: pointer;
+            margin-right: 15px;
+        }
+    }
 }

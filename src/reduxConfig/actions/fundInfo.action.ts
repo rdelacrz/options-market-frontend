@@ -19,3 +19,8 @@ export const getFunds = (): Action => ({
    type: ActionType.UPDATE_FUNDS_LIST,
    payload: {fundList},
 });
+
+export const updateFlaggedFunds = (flaggedFunds: {[id: string]: boolean}): Action => ({
+  type: ActionType.UPDATE_FLAGGED_FUNDS,
+  payload: {flaggedFunds},
+});

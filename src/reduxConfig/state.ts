@@ -22,6 +22,7 @@ export interface State {
   // Initialize default state here
   fundInfo: {
     fundList: [],
+    flaggedFunds: {},
   },
   globalSettings: {
     pendingDataFetches: [],

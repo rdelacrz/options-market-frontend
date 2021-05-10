@@ -14,7 +14,6 @@ export interface OptionsEntry {
   bop: string;
   wop: string;
   status: 'open' | 'closed';
-  feature: string;
 
   // Properties to be shown in after clicking details
   openInterest: number;

@@ -26,7 +26,6 @@ export const convertMarketDataToFundList = (marketData: MarketData) => {
         bop: '0', // not sure
         wop: '0', // not sure
         status: 'open',
-        feature: '',  // not sure
         openInterest: 0,  // not sure
         breakEven: 0, // not sure
         delta: 0, // not sure
