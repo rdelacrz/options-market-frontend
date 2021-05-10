@@ -50,7 +50,7 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                             {optionsEntry.pair}
                         </Link>,
                         optionsEntry.price,
-                        optionsEntry.strike,
+                        <div className='strike-price'>${optionsEntry.strike}</div>,
                         <div className='expiration-container'>
                             <div className='date-text'>{format(optionsEntry.expiration, 'dd/MM/yyyy')}</div>
                             <div className='time-zone'>{format(optionsEntry.expiration, 'hh:mm')} UTC</div>
