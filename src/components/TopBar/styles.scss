@@ -18,7 +18,7 @@ div.top-bar-wrapper {
     padding: 4px;
     transition: all 0.3s ease-in-out;
     width: 100vw;
-    z-index: 1000;
+    z-index: 50;
     &:not(.solid) {
         background: transparent;
         border-bottom: none;

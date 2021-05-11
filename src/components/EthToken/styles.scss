@@ -1,0 +1,30 @@
+.eth-token-wrapper {
+    .eth-icon {
+        display: block;
+    }
+}
+.eth-token-popper-content-wrapper {
+    .popper-button-container {
+        border-bottom: solid 1px #DDE4E9;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 10px 5px 15px;
+        .token-address-title {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .popper-closer {
+            .close-icon {
+                display: block;
+            }
+        }
+    }
+    .address-content-wrapper {
+        padding: 15px;
+        text-align: right;
+        .token-address {
+            font-size: 14px;
+            margin-top: 15px;
+        }
+    }
+}

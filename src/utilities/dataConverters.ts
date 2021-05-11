@@ -23,8 +23,8 @@ export const convertMarketDataToFundList = (marketData: MarketData) => {
         premium: 0, // not sure
         lp: '0',  // not sure
         share: 0, // not sure
-        bop: '0', // not sure
-        wop: '0', // not sure
+        bop: m.bToken.id,
+        wop: m.wToken.id,
         status: 'open',
         openInterest: 0,  // not sure
         breakEven: 0, // not sure

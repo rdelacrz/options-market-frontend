@@ -3,6 +3,7 @@
  */
 
 export * from './DetailsTableView';
+export * from './EthToken';
 export * from './Footer';
 export * from './FundBreadcrumbs';
 export * from './Header';

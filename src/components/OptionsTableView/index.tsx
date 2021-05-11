@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { OptionsEntry } from '@models';
 import { State, updateFlaggedFunds } from '@reduxConfig';
 import { useWindowSize } from '@utilities';
+import { EthToken } from '../EthToken';
 
 import './styles.scss';
 
@@ -70,10 +71,9 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         optionsEntry.premium,
                         optionsEntry.lp,
                         optionsEntry.share,
-                        optionsEntry.bop,
-                        optionsEntry.wop,
+                        <EthToken popperTitle='bToken Address' tokenAddress={optionsEntry.bop} />,
+                        <EthToken popperTitle='wToken Address' tokenAddress={optionsEntry.wop} />,
                         optionsEntry.status,
-                        
                     ]
                 }}
                 renderEntryActions={(optionsEntry: OptionsEntry, index: number) => {

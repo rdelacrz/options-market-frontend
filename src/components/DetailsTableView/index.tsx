@@ -1,10 +1,8 @@
-import React, { FunctionComponent, useCallback } from 'react';
-import { ContextMenu, ContextMenuItem, DataView } from '@aragon/ui';
+import React, { FunctionComponent } from 'react';
+import { DataView } from '@aragon/ui';
 import classnames from 'classnames';
-import { push } from 'connected-react-router';
 import { OptionsEntry } from '@models';
 import { useWindowSize } from '@utilities';
-import { format } from 'date-fns';
 
 import './styles.scss';
 
