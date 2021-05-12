@@ -62,7 +62,7 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         <Link className='options-pair-link' to={`/funds/${index}`}>
                             {optionsEntry.pair}
                         </Link>,
-                        optionsEntry.price,
+                        <div className='price'>${optionsEntry.price}</div>,
                         <div className='strike-price'>${optionsEntry.strike}</div>,
                         <div className='expiration-container'>
                             <div className='date-text'>{format(optionsEntry.expiration, 'dd/MM/yyyy')}</div>
@@ -71,8 +71,8 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         optionsEntry.premium,
                         optionsEntry.lp,
                         optionsEntry.share,
-                        <EthToken popperTitle='bToken Address' tokenAddress={optionsEntry.bop} />,
-                        <EthToken popperTitle='wToken Address' tokenAddress={optionsEntry.wop} />,
+                        <EthToken popperTitle='bToken Address' tokenAddress={optionsEntry.bop.id} />,
+                        <EthToken popperTitle='wToken Address' tokenAddress={optionsEntry.wop.id} />,
                         optionsEntry.status,
                     ]
                 }}

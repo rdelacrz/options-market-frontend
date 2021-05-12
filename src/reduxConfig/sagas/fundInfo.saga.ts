@@ -3,7 +3,7 @@ import { call, takeLatest, put, select } from 'redux-saga/effects';
 import { ActionType, startFetchingData, finishFetchingData, updateFunds } from '../actions';
 import environment from '@environment';
 import { MarketData, OptionsEntry } from '@models';
-import { getMockFundList, getMarkets } from '@services';
+import { getMockFundList, getMarkets, getUSDPrice } from '@services';
 import { convertMarketDataToFundList } from '@utilities';
 
 /**
@@ -17,7 +17,7 @@ function* getFundsList() {
     yield put(updateFunds(mockFundList));
   } else {
     const marketData: AxiosResponse<MarketData> = yield call(getMarkets);
-    const fundList = convertMarketDataToFundList(marketData.data);
+    const fundList: OptionsEntry[] = yield call(() => convertMarketDataToFundList(marketData.data, getUSDPrice));
     yield put(updateFunds(fundList));
   }
 

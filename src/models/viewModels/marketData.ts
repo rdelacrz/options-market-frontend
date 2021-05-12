@@ -2,6 +2,8 @@
  * Model for market data acquired via GraphQL request.
  */
 
+import { TokenData } from './tokenData';
+
 export interface MarketData {
   data: {
     markets: Market[],
@@ -12,19 +14,10 @@ export interface Market {
   amm: {
     id: string,
   }
-  bToken: {
-    decimals: number,
-    id: string,
-    totalSupply: string,
-  },
+  bToken: TokenData,
   claimFeeBasisPoints: number,
   closeFeeBasisPoints: number,
-  collateralToken: {
-    decimals: number,
-    id: string,
-    name: string,
-    symbol: string,
-  },
+  collateralToken: TokenData,
   createdBlock: string,
   createdTimestamp: string,
   createdTransaction: string,
@@ -34,16 +27,7 @@ export interface Market {
   marketIndex: string,
   marketName: string,
   marketStyle: string,
-  paymentToken: {
-    decimals: number,
-    id: string,
-    name: string,
-    symbol: string
-  },
+  paymentToken: TokenData,
   priceRatio: string,
-  wToken: {
-    decimals: number,
-    id: string,
-    totalSupply: string,
-  }
+  wToken: TokenData,
 }

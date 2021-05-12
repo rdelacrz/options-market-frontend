@@ -1,6 +1,9 @@
 /**
  * Encapsulates data related to an option.
  */
+
+import { TokenData } from './tokenData';
+
 export interface OptionsEntry {
   id: string;
   type: 'call' | 'put';
@@ -11,8 +14,8 @@ export interface OptionsEntry {
   premium: number;
   lp: string;
   share: number;
-  bop: string;
-  wop: string;
+  bop: TokenData;
+  wop: TokenData;
   status: 'open' | 'closed';
 
   // Properties to be shown in after clicking details

@@ -4,3 +4,4 @@
 
 export * from './marketData';
 export * from './optionsEntry';
+export * from './tokenData';
