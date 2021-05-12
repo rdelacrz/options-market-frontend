@@ -22,5 +22,5 @@ export async function getUSDPrice(tokenData: TokenData) {
     route = new Route([tokenWethPair], USDC);
   }
 	
-  return route.midPrice.invert().toSignificant(2);
+  return Number(route.midPrice.invert().toSignificant(2));
 }

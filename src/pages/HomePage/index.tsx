@@ -4,6 +4,7 @@ import { FundBreadcrumbs, OptionsTableView } from '@components';
 import { Page } from '@layouts';
 import { OptionsEntry } from '@models';
 import { getFunds, State } from '@reduxConfig';
+import { useTokenPriceRetriever } from '@utilities';
 
 import './styles.scss';
 
@@ -20,6 +21,9 @@ export const HomePage: FunctionComponent<PageProps> = (props) => {
     useEffect(() => {
         dispatch(getFunds());
     }, [dispatch]);
+
+    // Hook for retrieving token prices
+    useTokenPriceRetriever(fundListEntries);
 
     return (
         <Page className='home-page-wrapper'>

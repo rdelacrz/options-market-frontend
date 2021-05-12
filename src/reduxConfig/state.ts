@@ -23,6 +23,7 @@ export interface State {
   fundInfo: {
     fundList: [],
     flaggedFunds: {},
+    tokenPrices: {},
   },
   globalSettings: {
     pendingDataFetches: [],

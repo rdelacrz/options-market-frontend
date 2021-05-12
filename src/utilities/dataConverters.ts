@@ -9,9 +9,7 @@ const convertSecondsSinceEpochToDate = (seconds: string | number) => {
   return new Date(Number(milliseconds));
 }
 
-export async function convertMarketDataToFundList(
-    marketData: MarketData,
-    getUSDPrice: (token: TokenData) => Promise<string>) {
+export async function convertMarketDataToFundList(marketData: MarketData) {
   const tokenPrices: { [id: string]: string } = {};
 
   const optionsData: OptionsEntry[] = [];
@@ -27,18 +25,12 @@ export async function convertMarketDataToFundList(
       const pair = optionType === 'P' ?
         m.paymentToken.symbol + '/' + m.collateralToken.symbol :
         m.collateralToken.symbol + '/' + m.paymentToken.symbol;
-      
-      // Gets price of appropriate token
-      const token = optionType === 'P' ? m.paymentToken : m.collateralToken;
-      if (!tokenPrices[token.symbol]) {
-        tokenPrices[token.symbol] = await getUSDPrice(token);
-      }
 
       optionsData.push({
         id: m.id,
         type: optionType === 'C' ? 'call' : 'put',
         pair,
-        price: Number(tokenPrices[token.symbol]),
+        price: undefined,
         strike: Number(marketNameComponents[4]),
         expiration,
         premium: 0, // not sure
@@ -47,6 +39,8 @@ export async function convertMarketDataToFundList(
         bop: m.bToken,
         wop: m.wToken,
         status: 'open',
+        paymentToken: m.paymentToken,
+        collateralToken: m.collateralToken,
         openInterest: 0,  // not sure
         breakEven: 0, // not sure
         delta: 0, // not sure

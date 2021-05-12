@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback } from 'react';
-import { ContextMenu, ContextMenuItem, DataView, IconStar, IconStarFilled } from '@aragon/ui';
+import { ContextMenu, ContextMenuItem, DataView, IconStar, IconStarFilled, LoadingRing } from '@aragon/ui';
 import classnames from 'classnames';
 import { push } from 'connected-react-router';
 import { format } from 'date-fns';
@@ -26,6 +26,7 @@ interface OptionsTableViewProps {
 
 export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props) => {
     const flaggedFunds = useSelector<State, { [id: string]: boolean }>(state => state.fundInfo.flaggedFunds) || {};
+    const tokenPrices = useSelector<State, { [id: string]: number }>(state => state.fundInfo.tokenPrices) || {};
     const dispatch = useDispatch();
 
     const { width } = useWindowSize();
@@ -55,6 +56,7 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                 fields={OPTIONS_FIELDS}
                 entries={props.loading ? [] : props.entries}
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
+                    const tokenSymbol = optionsEntry.pair.split('/')[0];
                     return [
                         <div className={classnames('option-type', optionsEntry.type)}>
                             {optionsEntry.type.toUpperCase()}
@@ -62,7 +64,9 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         <Link className='options-pair-link' to={`/funds/${index}`}>
                             {optionsEntry.pair}
                         </Link>,
-                        <div className='price'>${optionsEntry.price}</div>,
+                        <div className='price'>
+                            {!tokenPrices[tokenSymbol] ? <LoadingRing /> : `$${tokenPrices[tokenSymbol]}`}
+                        </div>,
                         <div className='strike-price'>${optionsEntry.strike}</div>,
                         <div className='expiration-container'>
                             <div className='date-text'>{format(optionsEntry.expiration, 'dd/MM/yyyy')}</div>

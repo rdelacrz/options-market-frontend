@@ -7,4 +7,5 @@ import { OptionsEntry } from '@models';
 export interface FundInfo {
   fundList: OptionsEntry[];
   flaggedFunds: { [id: string]: boolean };    // Flags funds based on fund id
+  tokenPrices: { [id: string]: number };    // Maps token symbols to associated prices
 }

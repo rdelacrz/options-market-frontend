@@ -18,6 +18,9 @@ export interface OptionsEntry {
   wop: TokenData;
   status: 'open' | 'closed';
 
+  paymentToken: TokenData,
+  collateralToken: TokenData,
+
   // Properties to be shown in after clicking details
   openInterest: number;
   breakEven: number;
