@@ -10,8 +10,6 @@ const convertSecondsSinceEpochToDate = (seconds: string | number) => {
 }
 
 export async function convertMarketDataToFundList(marketData: MarketData) {
-  const tokenPrices: { [id: string]: string } = {};
-
   const optionsData: OptionsEntry[] = [];
   for (let m of marketData.data.markets) {
     const expiration = convertSecondsSinceEpochToDate(m.expirationDate);
@@ -32,7 +30,7 @@ export async function convertMarketDataToFundList(marketData: MarketData) {
         pair,
         price: undefined,
         strike: Number(marketNameComponents[4]),
-        expiration,
+        expiration: expiration.toUTCString(),   // Store as string, not Date, or errors may occur on page refresh
         premium: 0, // not sure
         lp: '0',  // not sure
         share: 0, // not sure
