@@ -14,7 +14,7 @@ const EthAccountButton: FunctionComponent<EthAccountButtonProps> = (props) => {
   const toast = useToast();
 
   // Gets Web3 attributes
-  const { account, activate, active, error } = useWeb3React();
+  const { account, activate, active, connector, library, error } = useWeb3React();
 
   useEffect(() => {
     // Error message: request of type 'wallet_requestPermissions' already pending for origin
