@@ -2,9 +2,8 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FundBreadcrumbs, OptionsTableView } from '@components';
 import { Page } from '@layouts';
-import { OptionsEntry } from '@models';
-import { getFunds, State } from '@reduxConfig';
-import { useTokenPriceRetriever } from '@utilities';
+import { getRawMarketData, State } from '@reduxConfig';
+import { useFundList } from '@utilities';
 
 import './styles.scss';
 
@@ -14,16 +13,15 @@ interface PageProps {
 
 export const HomePage: FunctionComponent<PageProps> = (props) => {
     const dataLoading = useSelector<State, boolean>(state => state.globalSettings.pendingDataFetches.length > 0);
-    const fundListEntries = useSelector<State, OptionsEntry[]>(state => state.fundInfo.fundList) || [];
     const dispatch = useDispatch();
 
-    // Gets funds 
+    // Gets raw market data 
     useEffect(() => {
-        dispatch(getFunds());
+        dispatch(getRawMarketData());
     }, [dispatch]);
 
-    // Hook for retrieving token prices
-    useTokenPriceRetriever(fundListEntries);
+    // Hook for acquiring fund list using Redux parameters
+    const fundListEntries = useFundList();
 
     return (
         <Page className='home-page-wrapper'>

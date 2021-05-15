@@ -5,60 +5,63 @@
 import { BigNumber } from 'bignumber.js';
 import dayjs from 'dayjs';
 import Greeks from 'greeks';
-import { AmmData, MarketData, OptionsEntry } from '@models';
+import { AmmData, Market, OptionsEntry } from '@models';
 
-export async function convertMarketDataToFundList(marketData: MarketData) {
-  const optionsData: OptionsEntry[] = [];
-  for (let m of marketData.data.markets) {
-    const expiration = dayjs(Number(m.expirationDate) * 1000, {
-      utc: true,
-    }).toDate();
-    
-    const state: 'open' | 'expired' | 'closed' = dayjs(expiration).isAfter(
-      dayjs(),
-    )
-      ? 'open'
-      : dayjs(expiration).add(180, 'day').isAfter(dayjs())
-      ? 'expired'
-      : 'closed';
+export const getFundDataFromMarketData = (market: Market) => {
+  const expiration = dayjs(Number(market.expirationDate) * 1000, {
+    utc: true,
+  }).toDate();
+  
+  const state = dayjs(expiration).isAfter(dayjs())
+    ? 'open'
+    : dayjs(expiration).add(180, 'day').isAfter(dayjs())
+      ? 'expired' : 'closed';
+  
+  const marketNameComponents = market.marketName.split('.');
+  const optionType = marketNameComponents[3];
 
-    // Only adds unexpired funds to the list
-    if (expiration.getTime() >= new Date().getTime()) {
-      const marketNameComponents = m.marketName.split('.');
-      const optionType = marketNameComponents[3];
+  // Orders pair depending on option type
+  const pair = optionType === 'P' ?
+    market.paymentToken.symbol + '/' + market.collateralToken.symbol :
+    market.collateralToken.symbol + '/' + market.paymentToken.symbol;
+  
+  const strike = Number(marketNameComponents[4]);
+  
+  const collateralTokenDecimals = market.collateralToken?.decimals || 18;
+  const openInterest = new BigNumber(market.bToken?.totalSupply || 0)
+    .shiftedBy(-collateralTokenDecimals)
+    .dividedBy(optionType === 'C' ? 1 : strike)
+    .decimalPlaces(4)
+    .toNumber();
 
-      // Orders pair depending on option type
-      const pair = optionType === 'P' ?
-        m.paymentToken.symbol + '/' + m.collateralToken.symbol :
-        m.collateralToken.symbol + '/' + m.paymentToken.symbol;
+  const fundData: OptionsEntry = {
+    id: market.id,
+    type: optionType === 'C' ? 'call' : 'put',
+    pair,
+    price: undefined,
+    strike: strike,
+    expiration: expiration.toUTCString(),   // Store as string, not Date, or errors may occur on page refresh
+    premium: 0,
+    lp: '0',  // not sure
+    share: 0, // not sure
+    bop: market.bToken,
+    wop: market.wToken,
+    status: state,
+    paymentToken: market.paymentToken,
+    collateralToken: market.collateralToken,
+    paymentPerCollateral: 0,
+    openInterest,
+    breakEven: '0',
+    delta: 0,
+    gamma: 0,
+    theta: 0,
+    vega: 0,
+    rho: 0,
+    tvl: 0,
+    apy: 0,
+  };
 
-      optionsData.push({
-        id: m.id,
-        type: optionType === 'C' ? 'call' : 'put',
-        pair,
-        price: undefined,
-        strike: Number(marketNameComponents[4]),
-        expiration: expiration.toUTCString(),   // Store as string, not Date, or errors may occur on page refresh
-        premium: 0,
-        lp: '0',  // not sure
-        share: 0, // not sure
-        bop: m.bToken,
-        wop: m.wToken,
-        status: state,
-        paymentToken: m.paymentToken,
-        collateralToken: m.collateralToken,
-        openInterest: 0,  // not sure
-        breakEven: 0, // not sure
-        delta: 0, // not sure
-        gamma: 0, // not sure
-        theta: 0, // not sure
-        vega: 0, // not sure
-        tvl: 0, // not sure
-        apy: 0, // not sure
-      });
-    }
-  }
-  return optionsData;
+  return fundData;
 }
 
 export const getGreeks = (optionsEntry: OptionsEntry, ammData: AmmData) => {

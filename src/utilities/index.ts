@@ -3,7 +3,7 @@
  */
 
 export * from './connectors';
-export * from './dataConverters';
+export * from './dataCalculators';
 export * from './dataStorage';
 export * from './hooks';
 export * from './httpClient';

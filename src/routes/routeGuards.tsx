@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router';
 import { OptionsEntry } from '@models';
 import { State } from '@reduxConfig';
+import { useFundList } from '@utilities';
 
 /**
  * Checks whether fund id in parameters is valid and that the list of fund list entries do exist, otherwise the user
@@ -21,8 +22,8 @@ export const FundGuard: FunctionComponent<{}> = (props) => {
     const params = useParams();
     const fundId = Number(params['id']);
 
-    /* Redux parameters */
-    const fundListEntries = useSelector<State, OptionsEntry[]>(state => state.fundInfo.fundList) || [];
+    // Hook for acquiring fund list using Redux parameters
+    const fundListEntries = useFundList();
 
     return (
         <React.Fragment>

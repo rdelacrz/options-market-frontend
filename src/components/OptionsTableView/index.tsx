@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useCallback } from 'react';
 import { ContextMenu, ContextMenuItem, DataView, IconStar, IconStarFilled, LoadingRing } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
 import classnames from 'classnames';
 import { push } from 'connected-react-router';
 import { format } from 'date-fns';
@@ -25,9 +26,7 @@ interface OptionsTableViewProps {
 }
 
 export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props) => {
-    const ammData = useSelector<State, { [id: string]: AmmData}>(state => state.fundInfo.ammDataMap) || {};
     const flaggedFunds = useSelector<State, { [id: string]: boolean }>(state => state.fundInfo.flaggedFunds) || {};
-    const tokenPrices = useSelector<State, { [id: string]: number }>(state => state.fundInfo.tokenPrices) || {};
     const dispatch = useDispatch();
 
     const { width } = useWindowSize();
@@ -66,8 +65,6 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         timeZone = format(expirationDate, 'hh:mm');
                     }
 
-                    const ammDataEntry = ammData[optionsEntry.id];
-
                     return [
                         <div className={classnames('option-type', optionsEntry.type)}>
                             {optionsEntry.type.toUpperCase()}
@@ -76,14 +73,14 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                             {optionsEntry.pair}
                         </Link>,
                         <div className='price'>
-                            {!tokenPrices[tokenSymbol] ? <LoadingRing /> : `$${tokenPrices[tokenSymbol]}`}
+                            {optionsEntry.price === undefined ? <LoadingRing /> : `$${optionsEntry.price}`}
                         </div>,
                         <div className='strike-price'>${optionsEntry.strike}</div>,
                         <div className='expiration-container'>
                             <div className='date-text'>{dateText}</div>
                             <div className='time-zone'>{timeZone} UTC</div>
                         </div>,
-                        ammDataEntry?.premium,
+                        optionsEntry.premium,
                         optionsEntry.lp,
                         optionsEntry.share,
                         <EthToken popperTitle='bToken Address' tokenAddress={optionsEntry.bop.id} />,

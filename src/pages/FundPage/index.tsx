@@ -5,7 +5,7 @@ import { DetailsTableView, FundBreadcrumbs, OptionsTableView } from '@components
 import { Page } from '@layouts';
 import { OptionsEntry } from '@models';
 import { State } from '@reduxConfig';
-import { useTokenPriceRetriever } from '@utilities';
+import { useFundList } from '@utilities';
 
 import './styles.scss';
 
@@ -18,12 +18,9 @@ export const FundPage: FunctionComponent<PageProps> = (props) => {
     const params = useParams();
     const fundId = Number(params['id']);
 
-    /* Redux parameters */
-    const fundListEntries = useSelector<State, OptionsEntry[]>(state => state.fundInfo.fundList) || [];
+    /* Hook for acquiring fund list using Redux parameters */
+    const fundListEntries = useFundList();
     const entryArray = fundId !== undefined && fundId < fundListEntries.length ? [fundListEntries[fundId]] : [];
-
-    // Hook for retrieving token price
-    useTokenPriceRetriever(entryArray);
 
     return (
         <Page className='fund-page-wrapper'>

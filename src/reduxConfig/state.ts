@@ -21,7 +21,8 @@ export interface State {
  export const initialState: State = {
   // Initialize default state here
   fundInfo: {
-    fundList: [],
+    markets: [],
+    ammDataMap: {},
     flaggedFunds: {},
     tokenPrices: {},
   },

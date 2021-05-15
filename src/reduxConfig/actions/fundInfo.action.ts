@@ -1,23 +1,23 @@
-import { AmmData, OptionsEntry, TokenData } from '@models';
+import { AmmData, Market, TokenData } from '@models';
 import { ActionType, Action } from './actionTypes';
 
 /**
- * Gets list of funds from Ethereum contract.
+ * Gets list of raw market data from Ethereum contract.
  * 
- * @returns Action for triggering the async getter action for the list of funds.
+ * @returns Action for triggering the async getter action for the list of raw market data.
  */
-export const getFunds = (): Action => ({
-  type: ActionType.GET_FUNDS_LIST,
+export const getRawMarketData = (): Action => ({
+  type: ActionType.GET_RAW_MARKET_DATA,
 });
 
 /**
- * Updates list of funds.
+ * Updates list of raw market data.
  * 
- * @returns Action with cleared list of funds as payload for reducer.
+ * @returns Action with list of raw market data as payload for reducer.
  */
- export const updateFunds = (fundList: OptionsEntry[]): Action => ({
-   type: ActionType.UPDATE_FUNDS_LIST,
-   payload: { fundList },
+ export const updateRawMarketData = (markets: Market[]): Action => ({
+   type: ActionType.UPDATE_RAW_MARKET_DATA,
+   payload: { markets },
 });
 
 /**

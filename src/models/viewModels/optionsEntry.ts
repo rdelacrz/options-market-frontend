@@ -17,17 +17,18 @@ export interface OptionsEntry {
   bop: TokenData;
   wop: TokenData;
   status: 'open' | 'expired' | 'closed';
-
   paymentToken: TokenData,
   collateralToken: TokenData,
+  paymentPerCollateral: number,
 
   // Properties to be shown in after clicking details
   openInterest: number;
-  breakEven: number;
+  breakEven: string;
   delta: number;
   gamma: number;
   theta: number;
   vega: number;
+  rho: number;
   tvl: number;
   apy: number;
 }

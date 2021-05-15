@@ -1,10 +1,12 @@
 import { AxiosResponse } from 'axios';
 import { call, fork, takeLatest, put, select } from 'redux-saga/effects';
-import environment from '@environment';
-import { AmmData, Market, MarketData, OptionsEntry, TokenData } from '@models';
-import { getMockFundList, getMarkets, getUSDPrice } from '@services';
-import { convertMarketDataToFundList, getAmmContractData } from '@utilities';
-import { Action, ActionType, startFetchingData, finishFetchingData, updateAmmDataMap, updateFunds, updateTokenPrices } from '../actions';
+import { AmmData, Market, MarketData, TokenData } from '@models';
+import { getMarkets, getUSDPrice } from '@services';
+import { getAmmContractData } from '@utilities';
+import {
+  Action, ActionType, startFetchingData, finishFetchingData,
+  updateAmmDataMap, updateRawMarketData, updateTokenPrices
+} from '../actions';
 import { State } from '../state';
 
 /**
@@ -18,28 +20,20 @@ function* getAMMDataList(market: Market) {
 }
 
 /**
- * Gets list of funds for performing CALL and PUT options.
+ * Gets list of raw market data for performing CALL and PUT options.
  */
-function* getFundsList() {
-  yield put(startFetchingData(ActionType.GET_FUNDS_LIST));
+function* getRawMarketData() {
+  yield put(startFetchingData(ActionType.GET_RAW_MARKET_DATA));
 
-  // Mock data was set up early in development process for testing basic fund list getter
-  if (environment.useMockData) {
-    const mockFundList = yield call(getMockFundList);
-    yield put(updateFunds(mockFundList));
-  } else {
-    const marketData: AxiosResponse<MarketData> = yield call(getMarkets);
+  const marketData: AxiosResponse<MarketData> = yield call(getMarkets);
+  yield put(updateRawMarketData(marketData.data.data.markets));
 
-    const fundList: OptionsEntry[] = yield call(() => convertMarketDataToFundList(marketData.data));
-    yield put(updateFunds(fundList));
-
-    // Gets AMM data using retrieved market data
-    for (let market of marketData.data.data.markets) {
-      yield fork(getAMMDataList, market);
-    }
+  // Gets AMM data using retrieved market data
+  for (let market of marketData.data.data.markets) {
+    yield fork(getAMMDataList, market);
   }
 
-  yield put(finishFetchingData(ActionType.GET_FUNDS_LIST));
+  yield put(finishFetchingData(ActionType.GET_RAW_MARKET_DATA));
 }
 
 /**
@@ -68,6 +62,6 @@ function* getTokenPrices(action: Action) {
 }
 
 export default function * fundInfoSaga() {
-  yield takeLatest(ActionType.GET_FUNDS_LIST, getFundsList);
+  yield takeLatest(ActionType.GET_RAW_MARKET_DATA, getRawMarketData);
   yield takeLatest(ActionType.GET_TOKEN_PRICES, getTokenPrices);
 }
