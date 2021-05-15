@@ -21,8 +21,6 @@ export const FundGuard: FunctionComponent<{}> = (props) => {
     const params = useParams();
     const fundId = Number(params['id']);
 
-    console.log(params)
-
     /* Redux parameters */
     const fundListEntries = useSelector<State, OptionsEntry[]>(state => state.fundInfo.fundList) || [];
 
