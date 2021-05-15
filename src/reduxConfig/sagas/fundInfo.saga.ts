@@ -26,6 +26,13 @@ function* getFundsList() {
   yield put(finishFetchingData(ActionType.GET_FUNDS_LIST));
 }
 
+/**
+ * Gets price of a token in USD terms, then stores it in the Redux store. This function is a helper 
+ * function for getTokenPrices, meant to be forked so that multiple API calls can be made concurrently without
+ * blocking execution.
+ * 
+ * @param tokenData Blockchain data associated with a token, which will be used to obtain its price (in USD terms). 
+ */
 function* storeTokenPrice(tokenData: TokenData) {
   const tokenPrice: number = yield call(() => getUSDPrice(tokenData));
   const tokenPrices: {[id: string]: number} = yield select((state: State) => state.fundInfo.tokenPrices);
@@ -35,7 +42,7 @@ function* storeTokenPrice(tokenData: TokenData) {
 /**
  * Gets prices associated with passed tokens and stores them in the Redux store.
  * 
- * @param action - Action containing the payload for the token data being retrieved.
+ * @param action Action containing the payload for the token data being retrieved.
  */
 function* getTokenPrices(action: Action) {
   const tokenList = action.payload as TokenData[];

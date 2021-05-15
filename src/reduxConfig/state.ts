@@ -27,5 +27,6 @@ export interface State {
   },
   globalSettings: {
     pendingDataFetches: [],
+    colorTheme: 'light',
   },
 };

@@ -3,4 +3,5 @@
  */
 export interface GlobalSettings {
   pendingDataFetches: string[];
+  colorTheme: 'light' | 'dark';
 }

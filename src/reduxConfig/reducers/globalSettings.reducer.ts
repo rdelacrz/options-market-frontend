@@ -8,6 +8,7 @@ const globalSettingsReducer = (globalSettings = initialGlobalSettings, action: A
   let pendingDataFetches: string[];
   switch (action.type) {
     case ActionType.CLEAR_DATA_FETCHES:
+    case ActionType.UPDATE_COLOR_THEME:
       return {...globalSettings, ...action.payload};
     case ActionType.FINISH_FETCHING_DATA:
       const finishedActionType = action.payload as string;
