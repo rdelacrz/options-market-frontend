@@ -6,7 +6,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import BigNumber from 'bignumber.js';
 import { utils } from 'ethers';
 import { throttle } from 'lodash';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AmmData, Market, OptionsEntry } from '@models';
 import { State } from '@reduxConfig';
 import { getFundDataFromMarketData, getGreeks } from './dataCalculators';
@@ -30,18 +30,17 @@ export const useFundList = () => {
     const markets = useSelector<State, Market[]>(state => state.fundInfo.markets);
     const ammDataMap = useSelector<State, { [id: string]: AmmData }>(state => state.fundInfo.ammDataMap);
     
-    const defaultFundList = useMemo(() => (
+    const baseFundList = useMemo(() => (
         markets.map(market => getFundDataFromMarketData(market))
             .filter(fund => fund.status === 'open')
     ), [markets]);
-    
-    const [fundList, setFundList] = useState<OptionsEntry[]>(defaultFundList);
 
-    /*
-    // Throttled as it is updated many times via parallel API calls and would otherwise result in redundant calculations
-    const throttledUpdate = useRef(throttle((fundList: OptionsEntry[], ammDataMap: { [id: string]: AmmData }) => {
-        console.log('throttle!!!')
-        const updatedFundList = fundList.map(optionsEntry => {
+    // Updated separately from base fund list
+    const [fundList, setFundList] = useState<OptionsEntry[]>([]);
+    
+    // Throttle as AMM data is updated many times via parallel API calls and would otherwise result in redundant calculations
+    const throttleUpdate = useRef(throttle((baseFundList: OptionsEntry[], ammDataMap: { [id: string]: AmmData }) => {
+        const updatedFundList = baseFundList.map(optionsEntry => {
             const ammData = ammDataMap[optionsEntry.id];
             if (ammData) {
                 optionsEntry.paymentPerCollateral = ammData.exchange;
@@ -77,11 +76,11 @@ export const useFundList = () => {
             return optionsEntry;
         });
         setFundList(updatedFundList);
-    }, 2000));
+    }, 1000));
 
     useEffect(() => {
-        throttledUpdate.current(fundList, ammDataMap);
-    }, [ammDataMap]);*/
+        throttleUpdate.current(baseFundList, ammDataMap);
+    }, [baseFundList, ammDataMap]);
 
-    return fundList;
+    return fundList.length > 0 ? fundList : baseFundList;
 }
