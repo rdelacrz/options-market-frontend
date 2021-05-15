@@ -16,7 +16,7 @@ export interface OptionsEntry {
   share: number;
   bop: TokenData;
   wop: TokenData;
-  status: 'open' | 'closed';
+  status: 'open' | 'expired' | 'closed';
 
   paymentToken: TokenData,
   collateralToken: TokenData,

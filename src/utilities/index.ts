@@ -7,4 +7,5 @@ export * from './dataConverters';
 export * from './dataStorage';
 export * from './hooks';
 export * from './httpClient';
-
+export * from './providers';
+export * from './sirenUtilities';

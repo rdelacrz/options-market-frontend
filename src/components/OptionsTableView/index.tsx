@@ -5,7 +5,7 @@ import { push } from 'connected-react-router';
 import { format } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { OptionsEntry } from '@models';
+import { AmmData, OptionsEntry } from '@models';
 import { State, updateFlaggedFunds } from '@reduxConfig';
 import { useWindowSize } from '@utilities';
 import { EthToken } from '../EthToken';
@@ -25,6 +25,7 @@ interface OptionsTableViewProps {
 }
 
 export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props) => {
+    const ammData = useSelector<State, { [id: string]: AmmData}>(state => state.fundInfo.ammDataMap) || {};
     const flaggedFunds = useSelector<State, { [id: string]: boolean }>(state => state.fundInfo.flaggedFunds) || {};
     const tokenPrices = useSelector<State, { [id: string]: number }>(state => state.fundInfo.tokenPrices) || {};
     const dispatch = useDispatch();
@@ -65,6 +66,8 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                         timeZone = format(expirationDate, 'hh:mm');
                     }
 
+                    const ammDataEntry = ammData[optionsEntry.id];
+
                     return [
                         <div className={classnames('option-type', optionsEntry.type)}>
                             {optionsEntry.type.toUpperCase()}
@@ -80,7 +83,7 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                             <div className='date-text'>{dateText}</div>
                             <div className='time-zone'>{timeZone} UTC</div>
                         </div>,
-                        optionsEntry.premium,
+                        ammDataEntry?.premium,
                         optionsEntry.lp,
                         optionsEntry.share,
                         <EthToken popperTitle='bToken Address' tokenAddress={optionsEntry.bop.id} />,

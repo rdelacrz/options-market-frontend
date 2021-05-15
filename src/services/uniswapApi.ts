@@ -2,17 +2,12 @@
  * Module responsible for getting price data from Uniswap.
  */
 
-import { getDefaultProvider } from 'ethers';
 import { ChainId, Fetcher, Token, Route, WETH } from '@uniswap/sdk';
 import { TokenData } from '@models';
-import environment from '@environment';
+import { provider } from '@utilities';
 
 // Token for USDC, pegged to the US dollar
 const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6);
-
-const provider = getDefaultProvider('homestead', {
-  etherscan: environment.providerApiKey,
-});
 
 export async function getUSDPrice(tokenData: TokenData) {
   let route: Route;

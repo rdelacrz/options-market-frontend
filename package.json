@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@aragon/ui": "^1.7.0",
+    "@sirenprotocol/sdk": "^1.0.8",
     "@storeon/localstorage": "^1.4.0",
     "@uniswap/sdk": "^3.0.3",
     "@web3-react/core": "^6.1.9",
@@ -20,6 +21,7 @@
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-preset-react-app": "^10.0.0",
     "bfj": "^7.0.2",
+    "bignumber.js": "^9.0.1",
     "camelcase": "^6.1.0",
     "classnames": "^2.3.1",
     "connected-react-router": "^6.9.1",

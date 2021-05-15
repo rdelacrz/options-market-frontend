@@ -1,4 +1,4 @@
-import { OptionsEntry, TokenData } from '@models';
+import { AmmData, OptionsEntry, TokenData } from '@models';
 import { ActionType, Action } from './actionTypes';
 
 /**
@@ -17,7 +17,26 @@ export const getFunds = (): Action => ({
  */
  export const updateFunds = (fundList: OptionsEntry[]): Action => ({
    type: ActionType.UPDATE_FUNDS_LIST,
-   payload: {fundList},
+   payload: { fundList },
+});
+
+/**
+ * Gets AMM data from AMM contract.
+ * 
+ * @returns Action for triggering the async getter action for the AMM data.
+ */
+ export const getAMMDataMap = (): Action => ({
+  type: ActionType.GET_AMM_DATA_MAP,
+});
+
+/**
+ * Updates AMM data points.
+ * 
+ * @returns Action with data dictionary of AMM data as payload for reducer.
+ */
+export const updateAmmDataMap = (ammDataMap: {[id: string]: AmmData}): Action => ({
+  type: ActionType.UPDATE_AMM_DATA_MAP,
+  payload: { ammDataMap },
 });
 
 /**
@@ -27,7 +46,7 @@ export const getFunds = (): Action => ({
  */
 export const updateFlaggedFunds = (flaggedFunds: {[id: string]: boolean}): Action => ({
   type: ActionType.UPDATE_FLAGGED_FUNDS,
-  payload: {flaggedFunds},
+  payload: { flaggedFunds },
 });
 
 /**
@@ -47,5 +66,5 @@ export const updateFlaggedFunds = (flaggedFunds: {[id: string]: boolean}): Actio
  */
  export const updateTokenPrices = (tokenPrices: { [id: string]: number }): Action => ({
   type: ActionType.UPDATE_TOKEN_PRICES,
-  payload: {tokenPrices},
+  payload: { tokenPrices },
 });
