@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FunctionComponent } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { DetailsTableView, FundBreadcrumbs, OptionsTableView } from '@components';
 import { Page } from '@layouts';
