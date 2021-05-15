@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { call, fork, takeLatest, put, select, spawn } from 'redux-saga/effects';
+import { call, fork, takeLatest, put, select } from 'redux-saga/effects';
 import environment from '@environment';
 import { AmmData, Market, MarketData, OptionsEntry, TokenData } from '@models';
 import { getMockFundList, getMarkets, getUSDPrice } from '@services';

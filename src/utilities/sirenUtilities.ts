@@ -1,6 +1,5 @@
 import { BigNumber } from 'bignumber.js';
 import { MinterAmmFactory } from '@sirenprotocol/sdk';
-import dayjs from 'dayjs';
 import { AmmData, Market } from '@models';
 import { provider } from './providers';
 
@@ -13,9 +12,7 @@ export async function getAmmContractData(market: Market) {
 
   try {
     const ammContract = MinterAmmFactory.connect(market.amm.id, provider);
-    console.log('price')
     const price = await ammContract.getPriceForMarket(market.id);
-    console.log(price)
     const exchange = await ammContract.getCurrentCollateralPrice();
     
     const volatilityFactor = await ammContract.volatilityFactor();
@@ -48,7 +45,6 @@ export async function getAmmContractData(market: Market) {
       annualizedVolatilityFactor: annualizedVolatilityFactor.toNumber(),
     } as AmmData;
   } catch (error) {
-    console.log(error)
     return { premium: 0, exchange: 0 } as AmmData;
   }
 }

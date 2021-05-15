@@ -2,9 +2,10 @@
  * Contains functions that convert blockchain data into usable client-side models for the application.
  */
 
-import { MarketData, OptionsEntry } from '@models';
+import { BigNumber } from 'bignumber.js';
 import dayjs from 'dayjs';
-import { getAmmContractData } from './sirenUtilities';
+import Greeks from 'greeks';
+import { AmmData, MarketData, OptionsEntry } from '@models';
 
 export async function convertMarketDataToFundList(marketData: MarketData) {
   const optionsData: OptionsEntry[] = [];
@@ -58,4 +59,77 @@ export async function convertMarketDataToFundList(marketData: MarketData) {
     }
   }
   return optionsData;
+}
+
+export const getGreeks = (optionsEntry: OptionsEntry, ammData: AmmData) => {
+  const marketType = optionsEntry.type;
+  const strike = optionsEntry.strike;
+
+  const expiration = new Date(optionsEntry.expiration);
+  const yearsToExpiration = dayjs(expiration).diff(dayjs(), 'year', true);
+
+  const exchange = ammData.exchange;
+  const annualizedVolatilityFactor = ammData.annualizedVolatilityFactor;
+
+  const greeksValues = {
+    delta: new BigNumber(
+      Greeks.getDelta(
+        marketType === "call" ? exchange : 1 / exchange,
+        strike,
+        yearsToExpiration,
+        annualizedVolatilityFactor,
+        0,
+        marketType.toLowerCase(),
+      ),
+    )
+      .decimalPlaces(5)
+      .toNumber(),
+    gamma: new BigNumber(
+      Greeks.getGamma(
+        marketType === "call" ? exchange : 1 / exchange,
+        strike,
+        yearsToExpiration,
+        annualizedVolatilityFactor,
+        0,
+      ),
+    )
+      .decimalPlaces(5)
+      .toNumber(),
+    vega: new BigNumber(
+      Greeks.getVega(
+        marketType === "call" ? exchange : 1 / exchange,
+        strike,
+        yearsToExpiration,
+        annualizedVolatilityFactor,
+        0,
+      ),
+    )
+      .decimalPlaces(5)
+      .toNumber(),
+    theta: new BigNumber(
+      Greeks.getTheta(
+        marketType === "call" ? exchange : 1 / exchange,
+        strike,
+        yearsToExpiration,
+        annualizedVolatilityFactor,
+        0,
+        marketType.toLowerCase(),
+      ),
+    )
+      .decimalPlaces(5)
+      .toNumber(),
+    rho: new BigNumber(
+      Greeks.getRho(
+        marketType === "call" ? exchange : 1 / exchange,
+        strike,
+        yearsToExpiration,
+        annualizedVolatilityFactor,
+        0,
+        marketType.toLowerCase(),
+      ),
+    )
+      .decimalPlaces(5)
+      .toNumber(),
+  }
+  return greeksValues;
 }
