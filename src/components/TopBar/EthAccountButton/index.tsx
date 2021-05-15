@@ -21,6 +21,8 @@ const EthAccountButton: FunctionComponent<EthAccountButtonProps> = (props) => {
   // Gets Web3 attributes
   const { activate, error } = useWeb3React();
   const [address, setAddress] = useState("");
+  
+  const web3 = window['web3'];
 
   useEffect(() => {
     // Error message: request of type 'wallet_requestPermissions' already pending for origin
@@ -32,10 +34,10 @@ const EthAccountButton: FunctionComponent<EthAccountButtonProps> = (props) => {
   }, [error]);
 
   useEffect(() => {
-    if (window.web3 && window.web3.currentProvider) {
-      setAddress(window.web3.currentProvider.selectedAddress);
+    if (web3?.currentProvider) {
+      setAddress(web3.currentProvider.selectedAddress);
     }
-  }, [address, window.web3.currentProvider.selectedAddress]);
+  }, [address, web3?.currentProvider?.selectedAddress]);
 
   const handleConnectionClick = useCallback(() => {
     if (typeof window !== "undefined") {
