@@ -23,11 +23,11 @@ export const FundGuard: FunctionComponent<{}> = (props) => {
     const fundId = Number(params['id']);
 
     // Hook for acquiring fund list using Redux parameters
-    const fundListEntries = useFundList();
+    const { baseFundList } = useFundList();
 
     return (
         <React.Fragment>
-            {Number.isInteger(fundId) && fundId < fundListEntries.length ?
+            {Number.isInteger(fundId) && fundId < baseFundList.length ?
                 props.children :
                 <Redirect to='/' />}
         </React.Fragment>

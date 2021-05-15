@@ -20,7 +20,8 @@ const OPTIONS_FIELDS = [
 
 interface OptionsTableViewProps {
     className?: string;
-    entries: OptionsEntry[];
+    entries: OptionsEntry[];    // Base fund list data parsed from markets
+    entryExtensions: OptionsEntry[];    // Updated fund list data containing data parsed from AMM data
     loading?: boolean;
     detailMode?: boolean;
 }
@@ -56,7 +57,7 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                 fields={OPTIONS_FIELDS}
                 entries={props.loading ? [] : props.entries}
                 renderEntry={(optionsEntry: OptionsEntry, index: number) => {
-                    const tokenSymbol = optionsEntry.pair.split('/')[0];
+                    const entryExtension = index < props.entryExtensions.length ? props.entryExtensions[index] : undefined;
 
                     let dateText = '', timeZone = '';
                     if (optionsEntry.expiration) {
@@ -73,16 +74,16 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (props
                             {optionsEntry.pair}
                         </Link>,
                         <div className='price'>
-                            {optionsEntry.price === undefined ? <LoadingRing /> : `$${optionsEntry.price}`}
+                            {entryExtension?.price === undefined ? <LoadingRing /> : `$${entryExtension.price}`}
                         </div>,
                         <div className='strike-price'>${optionsEntry.strike}</div>,
                         <div className='expiration-container'>
                             <div className='date-text'>{dateText}</div>
                             <div className='time-zone'>{timeZone} UTC</div>
                         </div>,
-                        optionsEntry.premium,
-                        optionsEntry.lp,
-                        optionsEntry.share,
+                        entryExtension?.premium,
+                        entryExtension?.lp,
+                        entryExtension?.share,
                         <EthToken popperTitle='bToken Address' tokenAddress={optionsEntry.bop.id} />,
                         <EthToken popperTitle='wToken Address' tokenAddress={optionsEntry.wop.id} />,
                         optionsEntry.status,

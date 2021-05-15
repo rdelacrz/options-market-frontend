@@ -19,13 +19,14 @@ export const FundPage: FunctionComponent<PageProps> = (props) => {
     const fundId = Number(params['id']);
 
     /* Hook for acquiring fund list using Redux parameters */
-    const fundListEntries = useFundList();
-    const entryArray = fundId !== undefined && fundId < fundListEntries.length ? [fundListEntries[fundId]] : [];
+    const { baseFundList, fundList } = useFundList();
+    const baseEntryArray = fundId !== undefined && fundId < baseFundList.length ? [baseFundList[fundId]] : [];
+    const entryArray = fundId !== undefined && fundId < fundList.length ? [fundList[fundId]] : [];
 
     return (
         <Page className='fund-page-wrapper'>
             <FundBreadcrumbs className='fund-page-breadcrumbs' fundId={fundId} />
-            <OptionsTableView className='selected-option-entry-table' entries={entryArray} detailMode />
+            <OptionsTableView className='selected-option-entry-table' entries={baseEntryArray} entryExtensions={entryArray} detailMode />
             <DetailsTableView optionEntry={entryArray.length > 0 ? entryArray[0] : undefined} />
         </Page>
     );

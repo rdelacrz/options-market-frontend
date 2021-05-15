@@ -4,6 +4,7 @@
 
 import { BigNumber } from 'bignumber.js';
 import dayjs from 'dayjs';
+import { utils } from 'ethers';
 import Greeks from 'greeks';
 import { AmmData, Market, OptionsEntry } from '@models';
 
@@ -62,6 +63,44 @@ export const getFundDataFromMarketData = (market: Market) => {
   };
 
   return fundData;
+}
+
+export const getAdditionalFundDataFromAMMData = (baseFundData: OptionsEntry, ammDataMap: { [id: string]: AmmData }) => {
+  let optionsEntry: OptionsEntry = { ...baseFundData };
+  
+  const ammData = ammDataMap[optionsEntry.id];
+  if (ammData) {
+    optionsEntry.paymentPerCollateral = ammData.exchange;
+    optionsEntry.premium = ammData.premium;
+
+    // Sets price of call/put option based on the collateral
+    const exchangeRate = optionsEntry.type === 'call'
+      ? new BigNumber(optionsEntry.paymentPerCollateral)
+          .decimalPlaces(2)
+          .toNumber()
+      : new BigNumber(1 / optionsEntry.paymentPerCollateral)
+          .decimalPlaces(2)
+          .toNumber();
+    optionsEntry.price = exchangeRate;
+
+    // Calculates break even point using premium, exchange rate, and strike point
+    optionsEntry.breakEven = optionsEntry.type === 'call'
+      ? utils.commify(
+          new BigNumber(optionsEntry.premium * exchangeRate + optionsEntry.strike)
+            .decimalPlaces(2)
+            .toString(),
+      )
+      : utils.commify(
+          new BigNumber(optionsEntry.strike)
+            .minus(optionsEntry.premium * exchangeRate)
+            .decimalPlaces(2)
+            .toString(),
+      )
+    
+    // Gets greeks for given options entry
+    optionsEntry = { ...optionsEntry, ...getGreeks(optionsEntry, ammData) };
+  }
+  return optionsEntry;
 }
 
 export const getGreeks = (optionsEntry: OptionsEntry, ammData: AmmData) => {

@@ -1,0 +1,22 @@
+query GetLiquidityPools {
+  amms {
+    id
+    collateralToken {
+      id
+      decimals
+      symbol
+      name
+    }
+    paymentToken {
+      id
+      decimals
+      symbol
+      name
+    }
+    lpToken {
+      id
+      decimals
+      totalSupply
+    }
+  }
+}

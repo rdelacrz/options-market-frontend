@@ -21,12 +21,12 @@ export const HomePage: FunctionComponent<PageProps> = (props) => {
     }, [dispatch]);
 
     // Hook for acquiring fund list using Redux parameters
-    const fundListEntries = useFundList();
+    const { baseFundList, fundList } = useFundList();
 
     return (
         <Page className='home-page-wrapper'>
             <FundBreadcrumbs className='home-page-breadcrumbs' />
-            <OptionsTableView entries={fundListEntries} loading={dataLoading} />
+            <OptionsTableView entries={baseFundList} entryExtensions={fundList} loading={dataLoading} />
         </Page>
     );
 }
