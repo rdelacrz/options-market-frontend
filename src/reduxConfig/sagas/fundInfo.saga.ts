@@ -4,8 +4,7 @@ import { AmmData, Market, MarketData, TokenData } from '@models';
 import { getMarkets, getUSDPrice } from '@services';
 import { getAmmContractData } from '@utilities';
 import {
-  Action, ActionType, startFetchingData, finishFetchingData,
-  updateAmmDataMap, updateRawMarketData, updateTokenPrices
+  Action, ActionType, startFetchingData, finishFetchingData, updateAmmDataMap, updateRawMarketData
 } from '../actions';
 import { State } from '../state';
 
@@ -36,32 +35,6 @@ function* getRawMarketData() {
   yield put(finishFetchingData(ActionType.GET_RAW_MARKET_DATA));
 }
 
-/**
- * Gets price of a token in USD terms, then stores it in the Redux store. This function is a helper 
- * function for getTokenPrices, meant to be forked so that multiple API calls can be made concurrently without
- * blocking execution.
- * 
- * @param tokenData Blockchain data associated with a token, which will be used to obtain its price (in USD terms). 
- */
-function* storeTokenPrice(tokenData: TokenData) {
-  const tokenPrice: number = yield call(() => getUSDPrice(tokenData));
-  const tokenPrices: {[id: string]: number} = yield select((state: State) => state.fundInfo.tokenPrices);
-  yield put(updateTokenPrices({...tokenPrices, [tokenData.symbol]: tokenPrice}));
-}
-
-/**
- * Gets prices associated with passed tokens and stores them in the Redux store.
- * 
- * @param action Action containing the payload for the token data being retrieved.
- */
-function* getTokenPrices(action: Action) {
-  const tokenList = action.payload as TokenData[];
-  for (let tokenData of tokenList) {
-    yield fork(storeTokenPrice, tokenData);
-  }
-}
-
 export default function * fundInfoSaga() {
   yield takeLatest(ActionType.GET_RAW_MARKET_DATA, getRawMarketData);
-  yield takeLatest(ActionType.GET_TOKEN_PRICES, getTokenPrices);
 }

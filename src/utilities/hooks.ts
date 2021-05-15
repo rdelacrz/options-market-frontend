@@ -11,9 +11,6 @@ import { AmmData, Market, OptionsEntry } from '@models';
 import { State } from '@reduxConfig';
 import { getFundDataFromMarketData, getGreeks } from './dataCalculators';
 
-// Referenced like this to avoid circular dependencies
-import { getTokenPrices } from '../reduxConfig/actions';
-
 export const useWindowSize = () => {
     const [size, setSize] = useState([0, 0]);
     if (typeof window !== 'undefined') {
@@ -29,28 +26,6 @@ export const useWindowSize = () => {
     return {width: size[0], height: size[1]};
 }
 
-/**
- * Hook responsible for retrieving prices for the current tokens within the list of current funds.
- * 
- * @returns List of tokens for which prices are being retrieved.
- */
-export const useTokenPriceRetriever = (fundList: OptionsEntry[]) => {
-    // Get token list, removing duplicates in the process
-    let tokenList = fundList.map(f => f.type === 'put' ? f.paymentToken : f.collateralToken) || [];
-    tokenList = tokenList.filter((token, index) => tokenList.findIndex(t => t.symbol === token.symbol) === index);
-    
-    const dispatch = useDispatch();
-
-    // Gets token prices
-    useEffect(() => {
-        if (tokenList.length > 0) {
-            dispatch(getTokenPrices(tokenList));
-        }
-    }, [tokenList]);
-
-    return tokenList;
-}
-
 export const useFundList = () => {
     const markets = useSelector<State, Market[]>(state => state.fundInfo.markets);
     const ammDataMap = useSelector<State, { [id: string]: AmmData }>(state => state.fundInfo.ammDataMap);
@@ -62,6 +37,7 @@ export const useFundList = () => {
     
     const [fundList, setFundList] = useState<OptionsEntry[]>(defaultFundList);
 
+    /*
     // Throttled as it is updated many times via parallel API calls and would otherwise result in redundant calculations
     const throttledUpdate = useRef(throttle((fundList: OptionsEntry[], ammDataMap: { [id: string]: AmmData }) => {
         console.log('throttle!!!')
@@ -105,7 +81,7 @@ export const useFundList = () => {
 
     useEffect(() => {
         throttledUpdate.current(fundList, ammDataMap);
-    }, [ammDataMap]);
+    }, [ammDataMap]);*/
 
     return fundList;
 }

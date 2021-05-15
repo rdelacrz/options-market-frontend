@@ -48,23 +48,3 @@ export const updateFlaggedFunds = (flaggedFunds: {[id: string]: boolean}): Actio
   type: ActionType.UPDATE_FLAGGED_FUNDS,
   payload: { flaggedFunds },
 });
-
-/**
- * Gets token prices from Uniswap API.
- * 
- * @returns Action for triggering the async getter action for the data dictionary of token prices.
- */
- export const getTokenPrices = (tokenList: TokenData[]): Action => ({
-  type: ActionType.GET_TOKEN_PRICES,
-  payload: tokenList,
-});
-
-/**
- * Updates data dictionary of token prices.
- * 
- * @returns Action with updated data dictionary of token prices as payload for reducer.
- */
- export const updateTokenPrices = (tokenPrices: { [id: string]: number }): Action => ({
-  type: ActionType.UPDATE_TOKEN_PRICES,
-  payload: { tokenPrices },
-});
