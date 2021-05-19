@@ -23,7 +23,8 @@
         color: #0A578F;
         font-weight: 600;
         transition: color 0.3s ease-in-out;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             color: rgba(#0A578F, 0.7);
         }
     }
@@ -42,6 +43,37 @@
         .entry-flag {
             cursor: pointer;
             margin-right: 15px;
+        }
+    }
+}
+
+.popover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -400px;
+    z-index: 1000;
+    padding: 20px;
+    width: 400px;
+    background: rgb(223, 223, 223);
+    transition: 1s;
+    &.active {
+        right: 0
+    }
+    .header-block {
+        display: flex;
+        .pair-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #0A578F;
+            border-right: 1px solid gray;
+            width: 50%;
+        }
+        .price-block {
+            width: 50%;
+            margin-left: 15px;
         }
     }
 }

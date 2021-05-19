@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useCallback } from "react";
+// @ts-ignore
+import React, { FunctionComponent, useCallback, useState } from "react";
 import {
   ContextMenu,
   ContextMenuItem,
@@ -45,11 +46,13 @@ interface OptionsTableViewProps {
 export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (
   props
 ) => {
+  const [activeFund, setActiveFund] = useState<any>({});
   const flaggedFunds =
     useSelector<State, { [id: string]: boolean }>(
       (state) => state.fundInfo.flaggedFunds
     ) || {};
   const dispatch = useDispatch();
+  const [isPopover, setPopover] = useState(false);
 
   const { width } = useWindowSize();
   const mode = width > 900 ? "table" : "list";
@@ -74,6 +77,8 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (
     (fundId: number) => {
       dispatch(push(`/funds/${fundId}`));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line no-restricted-globals
     [location.pathname]
   );
 
@@ -90,6 +95,8 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (
     }
     return [...favoriteEntries, ...notFavoriteEntries];
   };
+  console.log("activeFund", activeFund);
+  const renderPopoverBody = () => {};
 
   return (
     <div
@@ -169,11 +176,46 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (
                 />
               )}
               <ContextMenu>
-                <ContextMenuItem>Provide</ContextMenuItem>
-                <ContextMenuItem>Withdraw</ContextMenuItem>
-                <ContextMenuItem>Buy</ContextMenuItem>
-                <ContextMenuItem>Exercise</ContextMenuItem>
-                <ContextMenuItem>Sell</ContextMenuItem>
+                <ContextMenuItem
+                  onClick={() => {
+                    const currentEntity = props.entryExtensions.find(
+                      (el) => el.id === optionsEntry.id
+                    );
+                    setActiveFund(currentEntity);
+                    console.log(currentEntity);
+                    setPopover(true);
+                  }}
+                >
+                  Provide
+                </ContextMenuItem>
+                <ContextMenuItem
+                  onClick={() => {
+                    setPopover(true);
+                  }}
+                >
+                  Withdraw
+                </ContextMenuItem>
+                <ContextMenuItem
+                  onClick={() => {
+                    setPopover(true);
+                  }}
+                >
+                  Buy
+                </ContextMenuItem>
+                <ContextMenuItem
+                  onClick={() => {
+                    setPopover(true);
+                  }}
+                >
+                  Exercise
+                </ContextMenuItem>
+                <ContextMenuItem
+                  onClick={() => {
+                    setPopover(true);
+                  }}
+                >
+                  Sell
+                </ContextMenuItem>
                 {!props.detailMode && (
                   <ContextMenuItem onClick={() => handleDetailsClick(index)}>
                     Details
@@ -184,6 +226,28 @@ export const OptionsTableView: FunctionComponent<OptionsTableViewProps> = (
           );
         }}
       />
+
+      <div className={`popover ${isPopover ? "active" : ""}`}>
+        {activeFund && activeFund.pair ? (
+          <>
+            <div className="header-block">
+              <div className="pair-block">{activeFund.pair}</div>
+              <div className="price-block">
+                {`Current ${activeFund.pair.slice(
+                  0,
+                  activeFund.pair.indexOf("/")
+                )} price: 
+                ${activeFund.price}$
+                `}
+              </div>
+            </div>
+            <div>{activeFund.type}</div>
+            <div>{activeFund.strike}</div>
+            <div>{activeFund.expiration}</div>
+            <div>{activeFund.pair.slice(activeFund.pair.indexOf("/") + 1)}</div>
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };
