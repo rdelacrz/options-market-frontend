@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/options-market-frontend/static/css/main.c6267d00.chunk.css",
-    "main.js": "/options-market-frontend/static/js/main.03a89240.chunk.js",
-    "main.js.map": "/options-market-frontend/static/js/main.03a89240.chunk.js.map",
+    "main.js": "/options-market-frontend/static/js/main.e009b77d.chunk.js",
+    "main.js.map": "/options-market-frontend/static/js/main.e009b77d.chunk.js.map",
     "runtime-main.js": "/options-market-frontend/static/js/runtime-main.7c00e925.js",
     "runtime-main.js.map": "/options-market-frontend/static/js/runtime-main.7c00e925.js.map",
     "static/js/2.1f1740d8.chunk.js": "/options-market-frontend/static/js/2.1f1740d8.chunk.js",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.7c00e925.js",
     "static/js/2.1f1740d8.chunk.js",
     "static/css/main.c6267d00.chunk.css",
-    "static/js/main.03a89240.chunk.js"
+    "static/js/main.e009b77d.chunk.js"
   ]
 }
